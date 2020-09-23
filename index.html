@@ -7,6 +7,8 @@
 
     <!-- Link to CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nouislider.css">
+    <link rel="stylesheet" href="nouislider.min.css">
 
     <!-- Compressed CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -51,45 +53,63 @@
                 <div class="row">
                     <div class="input-field col s12">
                     <input placeholder="Name of Actor" id="actorName" type="text" class="validate">
-                    <label for="first_name">Name of Actor</label>
+                    <label for="actorname">Name of Actor</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input placeholder="Genre of Movies" id="genre" type="text" class="validate">
-                        <label for="first_name">Genre</label>
+                        <select>
+                          <option value="" disabled selected>Choose your option</option>
+                          <option id="1" value="1">Action</option>
+                          <option id="2" value="2">Drama</option>
+                          <option id="3" value="3">Horror</option>
+                          <option id="4" value="4">Adventure</option>
+                          <option id="5" value="5">Fantasy</option>
+                          <option id="6" value="6">Romance</option>
+                          <option id="7" value="7">Thriller</option>
+                          <option id="8" value="8">Animation</option>
+                          <option id="9" value="9">Mystery</option>
+                          <option id="10" value="10">Documentary</option>
+                          <option id="11" value="11">Crime</option>
+                          <option id="12" value="12">Romantic Comedy</option>
+                          <option id="13" value="13">Science Fiction</option>
+                          <option id="14" value="14">Biographical</option>
+                          <option id="15" value="15">War</option>
+                          <option id="16" value="16">Disaster</option>
+                          <option id="17" value="17">Detective Fiction</option>
+                        </select>
+                        <label>Genre</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <!-- <input placeholder="Rating" id="rating" type="text" class="validate"> -->
-                        <label for="password">Rating</label>
-                        
+                        <label for="rating">Rating</label>
+                        <!-- Make space between -->
                         <br>
                         <br>
                         
-                        <p>
-                            <label>
-                                <input type="checkbox"  id="ratingBox" class="rating" checked="checked" />
-                                <span>PG-13</span>
+                        <p class="spacing">
+                            <label class="col s2">
+                                <input type="checkbox"  id="pg13Box" class="rating"/>
+                                <span id="pg13">PG-13</span>
                             </label>
-                            <label>
-                                <input type="checkbox"  id="ratingBox" class="rating" checked="checked" />
-                                <span>G</span>
+                            <label class="col s2">
+                                <input type="checkbox"  id="gBox" class="rating"/>
+                                <span id="g">G</span>
                             </label>
-                            <label>
-                                <input type="checkbox"  id="ratingBox" class="rating" checked="checked" />
-                                <span>PG</span>
+                            <label class="col s2">
+                                <input type="checkbox"  id="pgBox" class="rating"/>
+                                <span id="pg">PG</span>
                             </label>
-                            <label>
-                                <input type="checkbox" id="ratingBox" class="rating" checked="checked" />
-                                <span>R</span>
+                            <label class="col s2">
+                                <input type="checkbox" id="rBox" class="rating"/>
+                                <span id="r">R</span>
                             </label>
-                            <label>
-                                <input type="checkbox"  id="ratingBox" class="rating" checked="checked" />
-                                <span>NC-17</span>
+                            <label class="col s2">
+                                <input type="checkbox"  id="nc17Box" class="rating"/>
+                                <span id="nc17">NC-17</span>
                             </label>
                         </p>
                     </div>
@@ -97,34 +117,45 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input placeholder="Start Year" id="yearRange" type="text" class="validate">
-                        <label for="email">Start Year</label>
+                        <div id="test-slider"></div>
+                        <label for="yearrange">Year Range</label>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input placeholder="End Year" id="yearRange" type="text" class="validate">
-                        <label for="email">End Year</label>
-                    </div>
-                </div>
             </form>
         </div>
         
-        <!-- Make the search button -->
-        <button id="searchButton"><i class="material-icons">search</i></button>
+        
+        <div class="pressButtons">
+            <div class="row">
+                <div class="col s6">
+                    <!-- Make the search button -->
+                    <h6>Search</h6>
+                    <button id="searchButton" class="buttons"><i class="material-icons">search</i></button>
+                </div>
+                
+                <div class="col s6">
+                    <!-- Make the clear button -->
+                    <h6>Clear</h6>
+                    <button id="clearButton" class="buttons"><i class="material-icons">clear</i></button>
+                </div>
+            </div>
+        </div>
+        
 
         <!-- Make the results section -->
         <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m12">
             
             <br>
 
                 <div class="card">
+                    <!-- Header of result -->
                     <div class="card-content">
                         <span class="card-title">Movies Results</span>
                     </div>
 
+                    <!-- Output result from user's criteria -->
                     <div id="movies-section"></div>
                 </div>
             </div>
@@ -141,10 +172,16 @@
         </footer>
     </div>
 
+    
+    <!-- Link to jQuery file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <!-- Compressed JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
     <!-- Link to JS file -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
+    <script src="nouislider.js"></script>
+    <script src="nouislider.min.js"></script>
 </body>
 </html>
