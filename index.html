@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ndecisive</title>
 
-    <!-- Link to CSS -->
+    <!-- Compressed CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Link to CSS -->
     <link rel="stylesheet" href="./distribute/nouislider.css">
     <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet" href="nouislider.min.css"> -->
-
-    <!-- Compressed CSS -->
-    
 
     <!-- Link to Icon -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -47,7 +45,15 @@
     <br>   
     <br>
 
+    <!-- Main event here -->
     <div class="container">
+        <h3>Movie Recommendation Generator</h3>
+
+        <!-- Make space -->
+        <br>
+        <br>
+
+        <!-- Form section -->
         <div class="row">
             <form class="col s12">
 
@@ -60,25 +66,25 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
+                        <select id='genre'>
                           <option value="" disabled selected>Choose your option</option>
-                          <option id="1" value="1">Action</option>
-                          <option id="2" value="2">Drama</option>
-                          <option id="3" value="3">Horror</option>
-                          <option id="4" value="4">Adventure</option>
-                          <option id="5" value="5">Fantasy</option>
-                          <option id="6" value="6">Romance</option>
-                          <option id="7" value="7">Thriller</option>
-                          <option id="8" value="8">Animation</option>
-                          <option id="9" value="9">Mystery</option>
-                          <option id="10" value="10">Documentary</option>
-                          <option id="11" value="11">Crime</option>
-                          <option id="12" value="12">Romantic Comedy</option>
-                          <option id="13" value="13">Science Fiction</option>
-                          <option id="14" value="14">Biographical</option>
-                          <option id="15" value="15">War</option>
-                          <option id="16" value="16">Disaster</option>
-                          <option id="17" value="17">Detective Fiction</option>
+                          <option id="1" value="Action">Action</option>
+                          <option id="2" value="Drama">Drama</option>
+                          <option id="3" value="Horror">Horror</option>
+                          <option id="4" value="Adventure">Adventure</option>
+                          <option id="5" value="Fantasy">Fantasy</option>
+                          <option id="6" value="Romance">Romance</option>
+                          <option id="7" value="Thriller">Thriller</option>
+                          <option id="8" value="Animation">Animation</option>
+                          <option id="9" value="Mystery">Mystery</option>
+                          <option id="10" value="Documentary">Documentary</option>
+                          <option id="11" value="Crime">Crime</option>
+                          <option id="12" value="Romantic Comedy">Romantic Comedy</option>
+                          <option id="13" value="Science Fiction">Science Fiction</option>
+                          <option id="14" value="Biographical">Biographical</option>
+                          <option id="15" value="War">War</option>
+                          <option id="16" value="Disaster">Disaster</option>
+                          <option id="17" value="Detective Fiction">Detective Fiction</option>
                         </select>
                         <label>Genre</label>
                     </div>
@@ -118,15 +124,22 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <div id="test-slider"></div>
                         <label for="yearrange">Year Range</label>
+
+                        <!-- Make space between -->
+                        <br>
+                        <br>
+                        <br>
+
+                        <!-- Inserting the year slider -->
+                        <div id="test-slider"></div>
                     </div>
                 </div>
 
             </form>
         </div>
         
-        
+        <!-- Buttons section -->
         <div class="pressButtons">
             <div class="row">
                 <div class="col s6">
@@ -162,28 +175,28 @@
             </div>
         </div>
 
-        <!-- Make space between -->
-        <br>
-        <br>
-        <br>
-
-        <!-- Make footer -->
-        <footer>
-            <p>Thanks for using us!</p>
-        </footer>
     </div>
 
     
+    <!-- Make space between -->
+    <br>
+    <br>
+    <br>
+
+    <!-- Footer section -->
+    <footer>
+        <p>Thanks for using us!</p>
+    </footer>
+
     <!-- Link to jQuery file -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <!-- Compressed JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
-    <!-- Link to JS file -->
+    <!-- Link to JS files -->
     <script src="./distribute/wNumb.js"></script>
     <script src="./distribute/nouislider.js"></script>
     <script src="script.js"></script>
-    <!-- <script src="nouislider.min.js"></script> -->
 </body>
 </html>
