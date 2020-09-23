@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('select').formSelect();
 });
 
-var slider = $("#test-slider");
+var slider = document.getElementById("test-slider");
 noUiSlider.create(slider, {
     start: [20, 80],
     connect: true,
@@ -18,7 +18,7 @@ noUiSlider.create(slider, {
     })
 });
 
-$("#searchButton").click(function(){
+// $("#searchButton").click(function(){
 // Movie title
 var movie;
 // Movie's genre(s)
@@ -163,5 +163,5 @@ function actorSearch(actor) {
             }
         });
     });
-});
 };
+// };
