@@ -1,3 +1,11 @@
 h1{
     text-align: center;
 }
+
+.demo-toggle-title {
+    margin-top: 0.5rem;
+}
+
+footer{
+    text-align: center;
+}
