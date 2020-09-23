@@ -40,18 +40,21 @@ $("#searchButton").click(function () {
     if (actor.trim() == "") {
         console.log("woo")
         // Movie search with random id
+        // movieSearch(movieId)
     }
     else {
         actorSearch(actor);
+        
     }
 
     var requestedGenre = $("#genre").val();
+    console.log(requestedGenre)
 
 })
 
-function filterGenre(requestedGenre) {
+// function filterGenre(requestedGenre) {
     
-}
+// }
 
 
 
