@@ -15,7 +15,7 @@ noUiSlider.create(slider, {
         'max': 2025
     },
     format: wNumb({
-       decimals: 0
+        decimals: 0
     })
 });
 // Until here (Please don't delete the code above this line! :)
@@ -40,9 +40,27 @@ var trailer;
 $("#searchButton").click(function () {
     var actor = $("#actorName").val();
     console.log(actor);
-    actorSearch(actor);
- })
- 
+    if (actor.trim() == "") {
+        console.log("woo")
+        // movieId = Math.floor(Math.random() * 1000) + 1;
+        // console.log(movieId);
+        
+        movieSearch(movieId)
+    }
+    else {
+        actorSearch(actor);
+
+    }
+
+    var requestedGenre = $("#genre").val();
+    console.log(requestedGenre)
+
+})
+
+// function filterGenre(requestedGenre) {
+
+// }
+
 // Searches for movie with certain actor when user inputs an actor
 function actorSearch(actor) {
 
@@ -76,54 +94,63 @@ function actorSearch(actor) {
             for (var i = 0; i < 3; i++) {
 
                 var movieId = response.movie_credits.cast[i].id;
-                // List movies actor was casted in
-                var movieIdQueryURL = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=bff2fb9d233724d8717a04b7589bf81d&language=en-US&append_to_response=videos";
 
-                $.ajax({
-                    url: movieIdQueryURL,
-                    method: "GET",
-                }).then(function (response) {
-                    console.log(response);
-                    console.log(movieId);
-
-                    // Movie name
-                    movie = response.title;
-                    console.log(movie);
-
-                    // Movie genre
-                    genres = response.genres;
-                    console.log(genres)
-                    for(var k =0;k<genres.length;k++){
-                        genres[k] = genres[k].name;
-                    };
-                    genres = genres.join(", ");
-                    console.log(genres)
-
-                    // Year released
-                    year = response.release_date;
-                    console.log(year);
-
-                    // Movie rating
-                    rating = response.vote_average;
-                    console.log(rating);
-
-                    // Movie overview
-                    overview = response.overview;
-                    console.log(overview);
-
-                    // Poster link
-                    poster = response.poster_path;
-                    poster = "http://image.tmdb.org/t/p/w1280" + poster;
-                    console.log(poster);
-
-                    // Trailer youtube embed link
-                    trailer = "https://www.youtube.com/embed/" + response.videos.results[0].key;
-                    console.log(trailer);
-
-                });
-                
+                movieSearch(movieId);
             }
         });
     });
 };
 
+function movieSearch(movieId) {
+    // List movies actor was casted in
+    var movieIdQueryURL = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=bff2fb9d233724d8717a04b7589bf81d&language=en-US&append_to_response=videos";
+
+    $.ajax({
+        url: movieIdQueryURL,
+        method: "GET",
+    }).then(function (response) {
+        console.log(response);
+        console.log(movieId);
+
+        // Movie name
+        movie = response.title;
+        console.log(movie);
+
+        // Movie genre
+        genres = response.genres;
+
+        // var possibleMovies =[]
+        // if (requestedGenres.trim() != "") {
+
+        // }
+
+        console.log(genres)
+        for (var k = 0; k < genres.length; k++) {
+            genres[k] = genres[k].name;
+        };
+        genres = genres.join(", ");
+        console.log(genres)
+
+        // Year released
+        year = response.release_date;
+        console.log(year);
+
+        // Movie rating
+        rating = response.vote_average;
+        console.log(rating);
+
+        // Movie overview
+        overview = response.overview;
+        console.log(overview);
+
+        // Poster link
+        poster = response.poster_path;
+        poster = "http://image.tmdb.org/t/p/w1280" + poster;
+        console.log(poster);
+
+        // Trailer youtube embed link
+        trailer = "https://www.youtube.com/embed/" + response.videos.results[0].key;
+        console.log(trailer);
+    });
+
+}
