@@ -1,4 +1,4 @@
-h1{
+h1, h3{
     text-align: center;
 }
 
@@ -8,4 +8,19 @@ h1{
 
 footer{
     text-align: center;
+    border: 1px solid black;
+}
+
+.container{
+    border: 1px solid black;
+    padding: 50px 50px 50px 50px;
+    box-shadow: 3px 3px;
+}
+
+.noUi-tooltip {
+    display: none;
+}
+
+.noUi-active .noUi-tooltip {
+    display: block;
 }

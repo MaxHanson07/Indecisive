@@ -1,22 +1,25 @@
-// JS file
+// JS file for the noUISlider
 $(document).ready(function() {
     $('select').formSelect();
 });
 
 var slider = document.getElementById("test-slider");
 noUiSlider.create(slider, {
-    start: [20, 80],
+    start: [1900, 2025],
+    tooltips: true,
     connect: true,
     step: 1,
     orientation: 'horizontal', // 'horizontal' or 'vertical'
     range: {
-        'min': 0,
-        'max': 100
+        'min': 1900,
+        'max': 2025
     },
     format: wNumb({
        decimals: 0
     })
 });
+// Until here (Please don't delete the code above this line! :)
+
 
 // $("#searchButton").click(function(){
 // Movie title
@@ -164,4 +167,4 @@ function actorSearch(actor) {
         });
     });
 };
-// };
+
