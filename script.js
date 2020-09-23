@@ -16,8 +16,21 @@ var trailer;
 $("#searchButton").click(function () {
     var actor = $("#actorName").val();
     console.log(actor);
-    actorSearch(actor);
- })
+    if (actor.trim() == "") {
+        console.log("woo")
+        // Movie search with random id
+    }
+    else {
+        actorSearch(actor);
+    }
+
+    var requestedGenre = $("#genre").val();
+
+})
+
+function filterGenre(requestedGenre) {
+    
+}
 
 
 
