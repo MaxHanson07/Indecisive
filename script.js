@@ -3,20 +3,30 @@ $(document).ready(function () {
     $('select').formSelect();
 });
 
+// Create two handler sliders for year range
 var slider = document.getElementById("test-slider");
 noUiSlider.create(slider, {
-    start: [1900, 2025],
+    start: [1950, 2025],
     tooltips: true,
     connect: true,
     step: 1,
     orientation: 'horizontal', // 'horizontal' or 'vertical'
     range: {
-        'min': 1900,
+        'min': 1950,
         'max': 2025
     },
     format: wNumb({
         decimals: 0
     })
+});
+
+// Get the value from the handler
+slider.addEventListener('click', function(event){
+    // To prevent the page refresh itself
+    event.preventDefault();
+    var getValue = slider.noUiSlider.get();
+    console.log(getValue[0]);
+    console.log(getValue[1]);
 });
 // Until here (Please don't delete the code above this line! :)
 
