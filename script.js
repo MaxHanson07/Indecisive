@@ -1,5 +1,5 @@
 // JS file for the noUISlider
-$(document).ready(function() {
+$(document).ready(function () {
     $('select').formSelect();
 });
 
@@ -40,27 +40,44 @@ var trailer;
 $("#searchButton").click(function () {
     var actor = $("#actorName").val();
     console.log(actor);
-    if (actor.trim() == "") {
+    var requestedGenre = $("#genre").val();
+    console.log(requestedGenre)
+    if ((actor.trim() == "") && requestedGenre === null) {
         console.log("woo")
-        // movieId = Math.floor(Math.random() * 1000) + 1;
-        // console.log(movieId);
-        
-        movieSearch(movieId)
+        // TODO:
+        movieId = Math.floor(Math.random() * 1000) + 1;
+        console.log(movieId);
+
+        movieSearch(movieId);
     }
-    else {
+
+    else if (requestedGenre === null) {
         actorSearch(actor);
 
     }
 
-    var requestedGenre = $("#genre").val();
-    console.log(requestedGenre)
+    else {
+        genreSearch(requestedGenre)
+    }
+
+
 
 })
 
-// function filterGenre(requestedGenre) {
+// https://api.themoviedb.org/3/discover/movie?api_key=e021bbfdbea0a79bac3bfd7a533b0b84&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=28
 
-// }
+function genreSearch(requestedGenre) {
+    var genreQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre;
 
+    // "https://api.themoviedb.org/3/discover/movie?api_key=e021bbfdbea0a79bac3bfd7a533b0b84&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=28"
+    $.ajax({
+        url: genreQueryURL,
+        method: "GET",
+    }).then(function (response) { 
+        console.log(response);
+
+    })
+}
 // Searches for movie with certain actor when user inputs an actor
 function actorSearch(actor) {
 
