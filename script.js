@@ -42,6 +42,8 @@ $("#searchButton").click(function () {
     console.log(actor);
     var requestedGenre = $("#genre").val();
     console.log(requestedGenre)
+    // Assigned later to a selected movie. Used to retrieve more info about movie to append to page
+    var movieId;
     if ((actor.trim() == "") && requestedGenre === null) {
         console.log("woo")
         // TODO:
@@ -51,35 +53,40 @@ $("#searchButton").click(function () {
         movieSearch(movieId);
     }
 
-    else if (requestedGenre === null) {
-        actorSearch(actor);
-
-    }
-
-    else {
+    else if ((actor.trim() == "") && requestedGenre != null) {
         genreSearch(requestedGenre)
     }
 
-
+    else {
+        actorSearch(actor, requestedGenre);
+    }
 
 })
 
-// https://api.themoviedb.org/3/discover/movie?api_key=e021bbfdbea0a79bac3bfd7a533b0b84&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=28
+// function genreAndActor(actor, requestedGenre) {
 
+// }
+
+// Returns most popular movies of certain genre
 function genreSearch(requestedGenre) {
     var genreQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre;
 
-    // "https://api.themoviedb.org/3/discover/movie?api_key=e021bbfdbea0a79bac3bfd7a533b0b84&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=28"
     $.ajax({
         url: genreQueryURL,
         method: "GET",
-    }).then(function (response) { 
+    }).then(function (response) {
         console.log(response);
+
+        var chooseMovie = Math.floor(Math.random() * 19) + 1;
+
+        movieId = response.results[chooseMovie].id;
+
+        movieSearch(movieId);
 
     })
 }
 // Searches for movie with certain actor when user inputs an actor
-function actorSearch(actor) {
+function actorSearch(actor, requestedGenre) {
 
     //Find searched actor ID
     var actorQueryURL =
@@ -99,22 +106,52 @@ function actorSearch(actor) {
         var actorName = response.results[0].name;
         console.log(actorName);
 
-        //Use actor ID to get all sorts of data
-        var actorIdQueryURL = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=bff2fb9d233724d8717a04b7589bf81d&language=en-US&append_to_response=movie_credits";
+        // Used to get id of movie
+        var actorIdQueryURL;
 
-        $.ajax({
-            url: actorIdQueryURL,
-            method: "GET",
-        }).then(function (response) {
+        if (requestedGenre != null) {
+            actorIdQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre + "&with_cast=" + actorId;
 
-            console.log(response);
-            for (var i = 0; i < 3; i++) {
+            $.ajax({
+                url: actorIdQueryURL,
+                method: "GET",
+            }).then(function (response) {
+                console.log(response);
 
-                var movieId = response.movie_credits.cast[i].id;
+                var chooseMovie = Math.floor(Math.random() * 19) + 1;
+
+                movieId = response.results[chooseMovie].id;
 
                 movieSearch(movieId);
-            }
-        });
+
+            })
+        }
+
+        else {
+            //Use actor ID to get all sorts of data
+            actorIdQueryURL = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=bff2fb9d233724d8717a04b7589bf81d&language=en-US&append_to_response=movie_credits";
+            $.ajax({
+                url: actorIdQueryURL,
+                method: "GET",
+            }).then(function (response) {
+
+                console.log(response);
+                // Returns a random movie by this actor
+                var randomIdx = Math.floor(Math.random() * response.movie_credits.cast.length);
+                var movieId = response.movie_credits.cast[randomIdx].id;
+                movieSearch(movieId);
+
+                // No longer needed
+                // for (var i = 0; i < 3; i++) {
+
+                //     var movieId = response.movie_credits.cast[i].id;
+
+                    
+                // }
+            });
+        }
+
+
     });
 };
 
@@ -168,6 +205,15 @@ function movieSearch(movieId) {
         // Trailer youtube embed link
         trailer = "https://www.youtube.com/embed/" + response.videos.results[0].key;
         console.log(trailer);
+        renderMovie({genres, name: movie, year, rating, overview, poster, trailer});
     });
 
+}
+
+function renderMovie(movie) {
+    console.log("MOVIE", movie)
+    $("#movies-section").empty()
+    $("#movies-section").append(`<iframe width="420" height="315"
+src="${movie.trailer}">
+</iframe>`)
 }
