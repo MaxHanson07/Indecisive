@@ -24,6 +24,8 @@ noUiSlider.create(slider, {
 // $("#searchButton").click(function(){
 // Movie title
 var movie;
+// Movie's certification
+var certification;
 // Movie's genre(s)
 var genre;
 // Movie's release year
@@ -36,6 +38,8 @@ var overview;
 var poster;
 // Movie's trailer
 var trailer;
+
+var apiKey = "bff2fb9d233724d8717a04b7589bf81d"
 
 $("#searchButton").click(function () {
     var actor = $("#actorName").val();
@@ -90,7 +94,7 @@ function actorSearch(actor, requestedGenre) {
 
     //Find searched actor ID
     var actorQueryURL =
-        "https://api.tmdb.org/3/search/person?api_key=bff2fb9d233724d8717a04b7589bf81d&query=" + actor;
+        "https://api.tmdb.org/3/search/person?api_key=" + apiKey + "&query=" + actor;
 
     $.ajax({
         url: actorQueryURL,
@@ -118,6 +122,7 @@ function actorSearch(actor, requestedGenre) {
             }).then(function (response) {
                 console.log(response);
 
+
                 var chooseMovie = Math.floor(Math.random() * response.results.length);
 
                 movieId = response.results[chooseMovie].id;
@@ -129,8 +134,8 @@ function actorSearch(actor, requestedGenre) {
 
         else {
             //Use actor ID to get all sorts of data
-            actorIdQueryURL = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=bff2fb9d233724d8717a04b7589bf81d&language=en-US&append_to_response=movie_credits";
-            $.ajax({
+            //Use actor ID to get all sorts of data
+            var actorIdQueryURL = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=" + apiKey + "&language=en-US&append_to_response=movie_credits"; $.ajax({
                 url: actorIdQueryURL,
                 method: "GET",
             }).then(function (response) {
@@ -146,7 +151,7 @@ function actorSearch(actor, requestedGenre) {
 
                 //     var movieId = response.movie_credits.cast[i].id;
 
-                    
+
                 // }
             });
         }
@@ -157,7 +162,7 @@ function actorSearch(actor, requestedGenre) {
 
 function movieSearch(movieId) {
     // List movies actor was casted in
-    var movieIdQueryURL = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=bff2fb9d233724d8717a04b7589bf81d&language=en-US&append_to_response=videos";
+    var movieIdQueryURL = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + apiKey + "&language=en-US&append_to_response=videos,release_dates";
 
     $.ajax({
         url: movieIdQueryURL,
@@ -169,6 +174,10 @@ function movieSearch(movieId) {
         // Movie name
         movie = response.title;
         console.log(movie);
+
+        // Movie certification
+        certification = response.release_dates.results[1].release_dates[0].certification;
+        console.log(certification);
 
         // Movie genre
         genres = response.genres;
@@ -205,7 +214,18 @@ function movieSearch(movieId) {
         // Trailer youtube embed link
         trailer = "https://www.youtube.com/embed/" + response.videos.results[0].key;
         console.log(trailer);
-        renderMovie({genres, name: movie, year, rating, overview, poster, trailer});
+        renderMovie({ genres, name: movie, year, rating, overview, poster, trailer });
+
+        var cerificationQuryURL = "https://api.themoviedb.org/3/certification/movie/list?api_key=" + apiKey;
+
+        $.ajax({
+            url: movieIdQueryURL,
+            method: "GET",
+        }).then(function (response) {
+            console.log(response);
+
+        });
+
     });
 
 }
