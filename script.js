@@ -21,15 +21,16 @@ noUiSlider.create(slider, {
 });
 
 // Get the value from the handler
-slider.addEventListener('click', function(event){
+slider.addEventListener('click', function (event) {
     // To prevent the page refresh itself
     event.preventDefault();
     var getValue = slider.noUiSlider.get();
-    console.log(getValue[0]);
-    console.log(getValue[1]);
+    var minYear = getValue[0];
+    var maxYear = getValue[1];
+    return minYear, maxYear;
+    
 });
 // Until here (Please don't delete the code above this line! :)
-
 
 // $("#searchButton").click(function(){
 // Movie title
@@ -58,6 +59,8 @@ $("#searchButton").click(function () {
     console.log(requestedGenre)
     // Assigned later to a selected movie. Used to retrieve more info about movie to append to page
     var movieId;
+
+
     if ((actor.trim() == "") && requestedGenre === null) {
         console.log("woo")
         // TODO:
@@ -75,11 +78,24 @@ $("#searchButton").click(function () {
         actorSearch(actor, requestedGenre);
     }
 
+    // if ($("#pg13Box").val() === true)
+    // {
+    //     console.log("woo")
+    // }
+
+    function yearFilter(minYear, maxYear) {
+        var requestedYear = Math.floor(Math.random() * (max - min) + min)
+
+        return requestedYear;
+
+    }
+
 })
 
 // Returns most popular movies of certain genre
-function genreSearch(requestedGenre) {
-    var genreQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre;
+function genreSearch(requestedGenre, yearId) {
+    var genreQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre + "&primary_release_year=" + ;
+
 
     $.ajax({
         url: genreQueryURL,
@@ -156,7 +172,6 @@ function actorSearch(actor, requestedGenre) {
             });
         }
 
-
     });
 };
 
@@ -175,17 +190,8 @@ function movieSearch(movieId) {
         movie = response.title;
         console.log(movie);
 
-        // Movie certification
-        certification = response.release_dates.results[1].release_dates[0].certification;
-        console.log(certification);
-
         // Movie genre
         genres = response.genres;
-
-        // var possibleMovies =[]
-        // if (requestedGenres.trim() != "") {
-
-        // }
 
         console.log(genres)
         for (var k = 0; k < genres.length; k++) {
@@ -215,6 +221,10 @@ function movieSearch(movieId) {
         trailer = "https://www.youtube.com/embed/" + response.videos.results[0].key;
         console.log(trailer);
         renderMovie({ genres, name: movie, year, rating, overview, poster, trailer });
+
+        // Movie certification
+        certification = response.release_dates.results[1].release_dates[0].certification;
+        console.log(certification);
 
         var cerificationQuryURL = "https://api.themoviedb.org/3/certification/movie/list?api_key=" + apiKey;
 
