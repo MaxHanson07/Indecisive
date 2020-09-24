@@ -67,10 +67,6 @@ $("#searchButton").click(function () {
 
 })
 
-// function genreAndActor(actor, requestedGenre) {
-
-// }
-
 // Returns most popular movies of certain genre
 function genreSearch(requestedGenre) {
     var genreQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre;
@@ -89,6 +85,7 @@ function genreSearch(requestedGenre) {
 
     })
 }
+
 // Searches for movie with certain actor when user inputs an actor
 function actorSearch(actor, requestedGenre) {
 
@@ -146,13 +143,6 @@ function actorSearch(actor, requestedGenre) {
                 var movieId = response.movie_credits.cast[randomIdx].id;
                 movieSearch(movieId);
 
-                // No longer needed
-                // for (var i = 0; i < 3; i++) {
-
-                //     var movieId = response.movie_credits.cast[i].id;
-
-
-                // }
             });
         }
 
