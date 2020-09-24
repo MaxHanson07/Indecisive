@@ -38,3 +38,8 @@ footer{
 .noUi-active .noUi-tooltip {
     display: block;
 }
+
+img {
+    height: 450px;
+    width: 300px;
+}
