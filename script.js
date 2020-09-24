@@ -236,7 +236,7 @@ function movieSearch(movieId) {
         console.log(genres)
 
         // Year released
-        year = response.release_date || "";
+        year = response.release_date;
         console.log(year);
 
         // Movie rating
