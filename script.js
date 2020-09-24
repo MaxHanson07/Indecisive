@@ -291,12 +291,12 @@ function movieSearch(movieId) {
 function renderMovie(movie) {
     console.log("MOVIE", movie)
     $("#movies-section").empty()
-    $("#movies-section").append($("<p>").text(movie.name))
-    $("#movies-section").append($("<p>").text(movie.year))
+    $("#movies-section").append($("<h3>").text("Title: " + movie.name))
     $("#movies-section").append($("<img>").attr("src", movie.poster))
-    $("#movies-section").append($("<p>").text(movie.overview))
-    $("#movies-section").append($("<p>").text(movie.genres))
-    $("#movies-section").append($("<p>").text(movie.rating))
+    $("#movies-section").append($("<p>").text("Year: " + movie.year))
+    $("#movies-section").append($("<p>").text("Plot: " + movie.overview))
+    $("#movies-section").append($("<p>").text("Genre(s): " + movie.genres))
+    $("#movies-section").append($("<p>").text("Rating: " + movie.rating))
     $("#movies-section").append(`<iframe width="420" height="315"
 src="${movie.trailer}">
 </iframe>`)
