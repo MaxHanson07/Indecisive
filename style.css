@@ -1,3 +1,7 @@
+.headerstyle{
+    padding-right: 3%;
+}
+
 h1, h3{
     text-align: center;
 }
@@ -6,15 +10,25 @@ h1, h3{
     margin-top: 0.5rem;
 }
 
-footer{
-    text-align: center;
-    border: 1px solid black;
-}
-
-.container{
+.indexstyle{
     border: 1px solid black;
     padding: 50px 50px 50px 50px;
     box-shadow: 3px 3px;
+}
+
+.historytitle{
+    text-align: center;
+}
+
+.resultcard{
+    width: 85%;
+    display: block;
+    margin: 0 auto;
+}
+
+footer{
+    text-align: center;
+    border: 1px solid black;
 }
 
 .noUi-tooltip {
