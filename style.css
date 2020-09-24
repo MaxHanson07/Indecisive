@@ -1,8 +1,14 @@
 .headerstyle{
     padding-right: 3%;
+    height: 10%;
 }
 
-h1, h3{
+.stickynav{
+    position: fixed;
+    top: 1;
+}
+
+.textcenter{
     text-align: center;
 }
 
@@ -10,14 +16,19 @@ h1, h3{
     margin-top: 0.5rem;
 }
 
-.indexstyle{
+.moviestyle, .bookstyle{
     border: 1px solid black;
     padding: 50px 50px 50px 50px;
     box-shadow: 3px 3px;
 }
 
-.historytitle{
-    text-align: center;
+.homestyle{
+    padding-top: 1%;
+}
+
+.centerbutton{
+    display: flex;
+    justify-content: center;
 }
 
 .resultcard{

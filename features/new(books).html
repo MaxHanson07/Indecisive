@@ -40,13 +40,14 @@
         </ul>
     </header>
 
-    <!-- Main event here -->
-    <div class="container moviestyle">
-        <h3 class="textcenter">Movie Recommendation Generator</h3>
+    <!-- Make space between -->
+    <br>
+    <br>   
+    <br>
 
-        <!-- Make space -->
-        <br>
-        <br>
+    <!-- Main event here -->
+    <div class="container bookstyle">
+        <h3 class="textcenter">Books Recommendation Generator</h3>
 
         <!-- Form section -->
         <div class="row">
@@ -54,88 +55,62 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                    <input placeholder="Name of Actor" id="actorName" type="text" class="validate">
-                    <label for="actorname">Name of Actor</label>
+                    <input placeholder="Name of Books" id="bookTitle" type="text" class="validate">
+                    <label for="titlebook">Title of Books</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
                         <select id='genre'>
-                          <option value="0" disabled selected>Choose your option</option>
-                          <option id="1" value="28">Action</option>
-                          <option id="2" value="18">Drama</option>
-                          <option id="3" value="27">Horror</option>
-                          <option id="4" value="12">Adventure</option>
-                          <option id="5" value="14">Fantasy</option>
-                          <option id="6" value="10749">Romance</option>
-                          <option id="7" value="53">Thriller</option>
-                          <option id="8" value="16">Animation</option>
-                          <option id="9" value="9648">Mystery</option>
-                          <option id="10" value="99">Documentary</option>
-                          <option id="11" value="80">Crime</option>
-                          <option id="12" value="35">Comedy</option>
-                          <option id="13" value="878">Science Fiction</option>
-                          <option id="14" value="10751">Family</option>
-                          <option id="15" value="10752">War</option>
-                          <option id="16" value="37">Western</option>
-                          <option id="17" value="10770">TV Movie</option>
-                          <option id="18" value="10402">Music</option>
-                          <option id="19" value="36">History</option>
-                        </select>
-                        <label>Genre</label>
+                            <option value="0" disabled selected>Choose your option</option>
+                            <option id="1" value="">Fiction</option>
+                            <option id="2" value="">Novel</option>
+                            <option id="3" value="">Narrative</option>
+                            <option id="4" value="">Non-fiction</option>
+                            <option id="5" value="">Mystery</option>
+                            <option id="6" value="">Romance</option>
+                            <option id="7" value="">Historical Fiction</option>
+                            <option id="8" value="">Science Fiction</option>
+                            <option id="9" value="">Horror Fiction</option>
+                            <option id="10" value="">Thriller</option>
+                            <option id="11" value="">Biography</option>
+                            <option id="12" value="">Romance</option>
+                            <option id="13" value="">Fantasy</option>
+                            <option id="14" value="">Fairy Tale</option>
+                            <option id="15" value="">History</option>
+                          </select>
+                          <label>Genre</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <label for="rating">Rating</label>
-                        <!-- Make space between -->
-                        <br>
-                        <br>
-                        
-                        <p class="spacing">
-                            <label class="col s2">
-                                <input type="checkbox" id="pg13Box" class="rating"/>
-                                <span id="pg13">PG-13</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox" id="gBox" class="rating"/>
-                                <span id="g">G</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox" id="pgBox" class="rating"/>
-                                <span id="pg">PG</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox" id="rBox" class="rating"/>
-                                <span id="r">R</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox" id="nc17Box" class="rating"/>
-                                <span id="nc17">NC-17</span>
-                            </label>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <label for="yearrange">Year Range</label>
-
-                        <!-- Make space between -->
-                        <br>
-                        <br>
-                        <br>
-
-                        <!-- Inserting the year slider -->
-                        <div id="test-slider"></div>
-
-                        <!-- Make space between -->
-                        <br>
-                        
-                        <!-- Getting the slider value -->
-                        <!-- <button id="slidervalue">Value</button> -->
+                        <select id='genre'>
+                            <option value="0" disabled selected>Choose your option</option>
+                            <option id="1" value="">Year of 2020</option>
+                            <option id="2" value="">Year of 2019</option>
+                            <option id="3" value="">Year of 2018</option>
+                            <option id="4" value="">Year of 2017</option>
+                            <option id="5" value="">Year of 2016</option>
+                            <option id="6" value="">Year of 2015</option>
+                            <option id="7" value="">Year of 2014</option>
+                            <option id="8" value="">Year of 2013</option>
+                            <option id="9" value="">Year of 2012</option>
+                            <option id="10" value="">Year of 2011</option>
+                            <option id="11" value="">Year of 2010</option>
+                            <option id="12" value="">Year of 2009</option>
+                            <option id="13" value="">Year of 2008</option>
+                            <option id="14" value="">Year of 2007</option>
+                            <option id="15" value="">Year of 2006</option>
+                            <option id="15" value="">Year of 2005</option>
+                            <option id="15" value="">Year of 2004</option>
+                            <option id="15" value="">Year of 2003</option>
+                            <option id="15" value="">Year of 2002</option>
+                            <option id="15" value="">Year of 2001</option>
+                            <option id="15" value="">Year of 2000</option>
+                          </select>
+                        <label for="rating">Top Rated Book of the Year</label>
                     </div>
                 </div>
             </form>
@@ -176,7 +151,7 @@
                 <div class="card resultcard">
                     <!-- Header of result -->
                     <div class="card-content">
-                        <span class="card-title">Movies Results</span>
+                        <span class="card-title">Books Results</span>
                     </div>
 
                     <!-- Output result from user's criteria -->
@@ -185,12 +160,12 @@
             </div>
         </div>  
     </div>
-
-    <!-- Make space between -->
+    
+    <!-- Make space -->
     <br>
     <br>
     <br>
-
+    
     <!-- Footer section -->
     <footer>
         <p>Thanks for using us!</p>

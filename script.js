@@ -1,6 +1,28 @@
-// JS file for the noUISlider
+// // JS file for the noUISlider
 $(document).ready(function () {
+    // Add dropdown
     $('select').formSelect();
+
+    // Add sidenav to become mobile responsive
+    $('.sidenav').sidenav();
+
+    // Add sticky navbar
+    $(window).scroll(function(){
+        if($(window).scrollTop() > 100){
+            $("nav").addClass("stickynav");
+        } else {
+            $("nav").removeClass("sticky-nav");
+        }
+    })
+
+    // Add tooltips
+    $('.tooltipped').tooltip();
+});
+
+// Display carousel slider
+$('.carousel.carousel-slider').carousel({
+    fullWidth: true,
+    indicators: true
 });
 
 // Create two handler sliders for year range
@@ -28,7 +50,7 @@ slider.addEventListener('click', function(event){
     console.log(getValue[0]);
     console.log(getValue[1]);
 });
-// Until here (Please don't delete the code above this line! :)
+// // Until here (Please don't delete the code above this line! :)
 
 
 // $("#searchButton").click(function(){
@@ -165,8 +187,6 @@ function actorSearch(actor, requestedGenre) {
                 // }
             });
         }
-
-
     });
 };
 
