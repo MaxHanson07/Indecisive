@@ -118,7 +118,7 @@ function actorSearch(actor, requestedGenre) {
             }).then(function (response) {
                 console.log(response);
 
-                var chooseMovie = Math.floor(Math.random() * 19) + 1;
+                var chooseMovie = Math.floor(Math.random() * response.results.length);
 
                 movieId = response.results[chooseMovie].id;
 
