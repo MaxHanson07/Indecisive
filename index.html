@@ -19,22 +19,13 @@
 <body>
     <!-- Header -->
     <header>
-        <!-- Dropdown Structure -->
-        <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">one</a></li>
-            <li><a href="#!">two</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">three</a></li>
-        </ul>
         <nav>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper headerstyle">
               <a href="#!" class="brand-logo">Ndecisive</a>
               <ul class="right hide-on-med-and-down">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Movies</a></li>
                 <li><a href="#">Books</a></li>
-                <!-- Dropdown Trigger -->
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
               </ul>
             </div>
         </nav>
@@ -46,7 +37,7 @@
     <br>
 
     <!-- Main event here -->
-    <div class="container">
+    <div class="container indexstyle">
         <h3>Movie Recommendation Generator</h3>
 
         <!-- Make space -->
@@ -55,7 +46,7 @@
 
         <!-- Form section -->
         <div class="row">
-            <form class="col s12">
+            <form class="col s9">
 
                 <div class="row">
                     <div class="input-field col s12">
@@ -76,16 +67,17 @@
                           <option id="6" value="10749">Romance</option>
                           <option id="7" value="53">Thriller</option>
                           <option id="8" value="16">Animation</option>
-                          <option id="9" value="Mystery">Mystery</option>
+                          <option id="9" value="9648">Mystery</option>
                           <option id="10" value="99">Documentary</option>
                           <option id="11" value="80">Crime</option>
-                          <option id="12" value="Romantic Comedy">Romantic Comedy</option>
+                          <option id="12" value="35">Comedy</option>
                           <option id="13" value="878">Science Fiction</option>
-                          <option id="14" value="Biographical">Biographical</option>
-                          <option id="15" value="War">War</option>
-                          <option id="16" value="Disaster">Disaster</option>
-                          <option id="17" value="Detective Fiction">Detective Fiction</option>
-                          <option id="18" value="35">Comedy</option>
+                          <option id="14" value="10751">Family</option>
+                          <option id="15" value="10752">War</option>
+                          <option id="16" value="37">Western</option>
+                          <option id="17" value="10770">TV Movie</option>
+                          <option id="18" value="10402">Music</option>
+                          <option id="19" value="36">History</option>
                         </select>
                         <label>Genre</label>
                     </div>
@@ -134,12 +126,23 @@
 
                         <!-- Inserting the year slider -->
                         <div id="test-slider"></div>
+
+                        <!-- Make space between -->
+                        <br>
+                        
+                        <!-- Getting the slider value -->
+                        <!-- <button id="slidervalue">Value</button> -->
                     </div>
                 </div>
-
             </form>
+
+            <!-- Search History column -->
+            <div class="searchhistory col s3">
+                <p class="historytitle">Search History</p>
+                <span id="historyresult" class="history"></span>
+            </div>
         </div>
-        
+
         <!-- Buttons section -->
         <div class="pressButtons">
             <div class="row">
@@ -152,19 +155,23 @@
                 <div class="col s6">
                     <!-- Make the clear button -->
                     <h6>Clear</h6>
-                    <button id="clearButton" class="buttons"><i class="material-icons">clear</i></button>
+                    <button id="clearButton" class="buttons"><i class="material-icons">clear_all</i></button>
                 </div>
             </div>
         </div>
         
+    </div>
 
-        <!-- Make the results section -->
+    <!-- Make the results section -->
+    <div class="results">
         <div class="row">
             <div class="col s12 m12">
-            
-            <br>
+                    
+                <!-- Make space -->
+                <br>
+                <br>
 
-                <div class="card">
+                <div class="card resultcard">
                     <!-- Header of result -->
                     <div class="card-content">
                         <span class="card-title">Movies Results</span>
@@ -174,11 +181,9 @@
                     <div id="movies-section"></div>
                 </div>
             </div>
-        </div>
-
+        </div>  
     </div>
 
-    
     <!-- Make space between -->
     <br>
     <br>
