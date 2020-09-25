@@ -108,7 +108,17 @@ var trailer;
 
 var apiKey = "bff2fb9d233724d8717a04b7589bf81d"
 
+// Run function to pull search results from local storage and fill array with it
+let userSearch = JSON.parse(localStorage.getItem("movieResults")) || [];
+console.log(userSearch)
+
+for (let i = userSearch.length - 1; i > userSearch.length - 6; i--){
+    $(".searchHistory").append($("<li>").text(userSearch[i]))
+}
+
+
 $("#searchButton").click(function () {
+    console.log(userSearch)
     var getValue = slider.noUiSlider.get();
 
     // Get value from year slider
@@ -249,6 +259,7 @@ function actorSearch(actor, requestedGenre) {
 
             movieId = response.results[chooseMovie].id;
 
+    
             movieSearch(movieId);
 
         })
@@ -293,12 +304,19 @@ function movieSearch(movieId) {
         // console.log(movieId);
 
         // Movie name
+        
         if (response.title === undefined) {
             movie = "Title not found. Either there is no movie that fully matches your criteria or we tried to recommend you a movie that doesn't exist. Try searching again."
         }
         else {
             movie = response.title;
             console.log(movie);
+            userSearch.push(movie);
+            $(".searchHistory").empty()
+            for (let i = userSearch.length - 1; i > userSearch.length - 6; i--){
+                $(".searchHistory").append($("<li>").text(userSearch[i]))
+            }
+            localStorage.setItem("movieResults", JSON.stringify(userSearch))
         }
 
 
