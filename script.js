@@ -61,7 +61,6 @@ $(".rating").on('click', function (event) {
         $(this).val("");
     }
 
-
 })
 
 var minYear;
@@ -234,62 +233,43 @@ function actorSearch(actor, requestedGenre) {
         }).then(function (response) {
             console.log(response);
 
-            // TODO: Error catch (for if movie not found)
             var chooseMovie = Math.floor(Math.random() * response.results.length);
 
-            console.log(response.results, chooseMovie)
+            // TODO: need help
+            if (!chooseMovie) {
+                $("#movies-section").append($("<h3>").text("No movie was found. Try searching again or adjusting your parameters to describe a movie that actually exists"))
+            }
+            else {
 
-            movieId = response.results[chooseMovie].id;
+                console.log(response.results, chooseMovie)
 
-        else {
-            //Use actor ID to get all sorts of data
-            //Use actor ID to get all sorts of data
-            var actorIdQueryURL = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=" + apiKey + "&language=en-US&append_to_response=movie_credits"; $.ajax({
-                url: actorIdQueryURL,
-                method: "GET",
-            }).then(function (response) {
+                movieId = response.results[chooseMovie].id;
 
-                console.log(response);
-                // Returns a random movie by this actor
-                var randomIdx = Math.floor(Math.random() * response.movie_credits.cast.length);
-                var movieId = response.movie_credits.cast[randomIdx].id;
                 movieSearch(movieId);
+            }
 
-            });
-        }
-            movieSearch(movieId);
 
         })
-        
-            // var actorIdQueryURL = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=" + apiKey + "&language=en-US&append_to_response=movie_credits";
-            // $.ajax({
-            //     url: actorIdQueryURL,
-            //     method: "GET",
-            // }).then(function (response) {
 
-            //     console.log(response);
-            //     // Returns a random movie by this actor
-            //     // TODO: Needs exception handling
-            //     var randomIdx = Math.floor(Math.random() * response.movie_credits.cast.length);
-            //     var movieId = response.movie_credits.cast[randomIdx].id;
-            //     movieSearch(movieId);
+        // var actorIdQueryURL = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=" + apiKey + "&language=en-US&append_to_response=movie_credits";
+        // $.ajax({
+        //     url: actorIdQueryURL,
+        //     method: "GET",
+        // }).then(function (response) {
 
-            // });
-        
+        //     console.log(response);
+        //     // Returns a random movie by this actor
+        //     // TODO: Needs exception handling
+        //     var randomIdx = Math.floor(Math.random() * response.movie_credits.cast.length);
+        //     var movieId = response.movie_credits.cast[randomIdx].id;
+        //     movieSearch(movieId);
+
+        // });
+
     });
 };
 
 function movieSearch(movieId) {
-
-    // Uses this api call if neither genre or actor are called
-    // if (quickSearch) {
-    //     "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre + "&with_cast=" + actorId + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31`;
-    //     var movieIdQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31`;
-    // }
-    // Search movie by Id gotten by either actorSearch or genreSearch
-    // else {
-    //     var movieIdQueryURL = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + apiKey + "&language=en-US&append_to_response=videos,release_dates";
-    // }
 
     var movieIdQueryURL = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + apiKey + "&language=en-US&append_to_response=videos,release_dates";
 
@@ -309,7 +289,6 @@ function movieSearch(movieId) {
             console.log(movie);
         }
 
-
         // Movie genre
         if (response.genres === undefined) {
             genres = "Cannot find genre. I guess the movie doesn't want to put itself in a box."
@@ -327,7 +306,7 @@ function movieSearch(movieId) {
 
 
         // Year released
-        if (response.release_date === undefined) {
+        if (!response.release_date) {
             year = "I cannot find the release date. Maybe its from the future? Spooky!"
         }
         else {
@@ -336,7 +315,7 @@ function movieSearch(movieId) {
         }
 
         // Movie rating
-        if (response.vote_average === undefined) {
+        if (!response.vote_average) {
             rating = "No rating found. Are they ever right anyways?"
         }
         else {
@@ -345,7 +324,7 @@ function movieSearch(movieId) {
         }
 
         // Movie overview
-        if (response.overview === undefined) {
+        if (!response.overview) {
             overview = "Plot not found. Ehh, probably not worth the watch anyways. Search again or take a risk and watch it anyways!"
         }
         else {
@@ -355,7 +334,7 @@ function movieSearch(movieId) {
 
         // Poster link
         // TODO: Error catching needed
-        if (response.poster_path === undefined) {
+        if (!response.poster_path) {
             poster = "http://uip.dk/sites/default/files/styles/movie_image_poster/public/default_images/movie-poster-placeholder_8.png?itok=DQ8mgIwY"
         }
         else {
@@ -366,7 +345,7 @@ function movieSearch(movieId) {
 
         // Trailer youtube embed link
         // console.log(response.videos.results[0].key)
-        if (response.videos.results[0] === undefined) {
+        if (!response.videos.results[0]) {
             trailer = "https://www.youtube.com/embed/pvuFVwUZQis"
         }
         else {
