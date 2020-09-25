@@ -61,7 +61,6 @@ $(".rating").on('click', function (event) {
         $(this).val("");
     }
 
-
 })
 
 var minYear;
@@ -78,7 +77,16 @@ slider.addEventListener('change', function (event) {
     maxYear = parseInt(getValue[1]);
 
 });
-// // Until here (Please don't delete the code above this line! :)
+
+// Add clear button to clear the entire form
+var clearButton  = $("#clearButton");
+clearButton.on("click", function(){
+    $(".rating").prop("checked", true);
+    $("#actorName").val("");
+    $("#genre").prop("selectedIndex", 0);
+    $("#genre").formSelect();
+    slider.noUiSlider.reset();
+})
 
 // $("#searchButton").click(function(){
 // Movie title
