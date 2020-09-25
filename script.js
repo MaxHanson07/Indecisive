@@ -45,21 +45,37 @@ var checked = false;
 
 var requestedRatings = []
 $(".rating").on('click', function (event) {
-    console.log($(this).attr("data-rating"), $(this)[0].checked);
+    // console.log($(this).attr("data-rating"), $(this)[0].checked);
 
-    if (checked === false) {
-        checked = true;
-    }
-    else if (checked) {
-        checked = false;
-    }
+    
+    if (requestedRatings.includes($(this).attr("data-rating")))
+    {
+        var indexRating = requestedRatings.indexOf($(this).attr("data-rating"));
 
-    if (checked === false) {
-        $(this).val($(this).attr("data-rating"));
+        requestedRatings.splice(indexRating, 1);
+        console.log(requestedRatings);
     }
     else {
-        $(this).val("");
+        requestedRatings.push($(this).attr("data-rating"));
+        console.log(requestedRatings);
     }
+    console.log(requestedRatings);
+    // if (checked === false) {
+    //     checked = true;
+    // }
+    // else if (checked) {
+    //     checked = false;
+    // }
+
+    // if (checked === false) {
+    //     $(this).val($(this).attr("data-rating"));
+    // }
+    // else {
+    //     $(this).val("");
+    // }
+    // console.log($(this).val())
+
+    
 
 })
 
@@ -99,9 +115,18 @@ var trailer;
 
 var apiKey = "bff2fb9d233724d8717a04b7589bf81d"
 
+var ratingQuery;
+
 // Run function to pull search results from local storage and fill array with it
 let userSearch = JSON.parse(localStorage.getItem("movieResult")) || [];
 
+// Are you feeling lucky?
+$("#randomButton").click(function () {
+    // Used for random button
+    movieId = Math.floor(Math.random() * 1000) + 1;
+    movieSearch(movieId);
+    // ratingFilter();
+})
 
 $("#searchButton").click(function () {
     var getValue = slider.noUiSlider.get();
@@ -117,52 +142,40 @@ $("#searchButton").click(function () {
     console.log(requestedGenre)
     // Assigned later to a selected movie. Used to retrieve more info about movie to append to page
     var movieId;
-    // Set to true if user doesn't enter parameters other than year and doesn't click quick search button
-    var quickSearch = false;
-
 
     if ((actor.trim() == "") && requestedGenre === null) {
         console.log("woo")
-
+        
+        ratingFilter();
         yearSearch()
-
-        // TODO:
-        // Used for random button
-        // movieId = Math.floor(Math.random() * 1000) + 1;
-        // console.log(movieId);
-        // ratingFilter();
-
 
     }
 
     else if ((actor.trim() == "") && requestedGenre != null) {
+        ratingFilter();
         genreSearch(requestedGenre)
     }
 
     else {
+        ratingFilter();
         actorSearch(actor, requestedGenre);
     }
-
-    // if ($("#pg13Box").val() === true)
-    // {
-    //     console.log("woo")
-    // }
 
 })
 
 function ratingFilter() {
-    var pg13Value = $("#pg13Box").val()
-    console.log(pg13Value);
-    var rValue = $("#rBox").val()
-    console.log(rValue)
-    if ($("#pg13Box") === true) {
-        console.log("fantastic")
+    ratingsQuery = requestedRatings[0];
+    if (requestedRatings.length > 1) {
+        for (let i=1; i<requestedRatings.length; i++) {
+            ratingsQuery = ratingQuery + "%2C%20" + requestedRatings[i]
+        }
     }
+
 }
 
 // Used only if user searches without entering parameters or choosing random search
 function yearSearch() {
-    var yearQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31`;
+    var yearQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification=" + ratingsQuery;
 
     $.ajax({
         url: yearQueryURL,
@@ -181,7 +194,7 @@ function yearSearch() {
 
 // Returns most popular movies of certain genre
 function genreSearch(requestedGenre) {
-    var genreQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31`;
+    var genreQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification=" + ratingsQuery;
 
     $.ajax({
         url: genreQueryURL,
@@ -223,11 +236,11 @@ function actorSearch(actor, requestedGenre) {
         var actorIdQueryURL;
 
         if (requestedGenre != null) {
-            actorIdQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre + "&with_cast=" + actorId + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31`;
+            actorIdQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre + "&with_cast=" + actorId + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification=" + ratingsQuery;
 
         }
         else {
-            actorIdQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_cast=" + actorId + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31`;
+            actorIdQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_cast=" + actorId + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification=" + ratingsQuery;
 
         }
 
@@ -239,9 +252,8 @@ function actorSearch(actor, requestedGenre) {
 
             var chooseMovie = Math.floor(Math.random() * response.results.length);
 
-            // TODO: need help
             if (!chooseMovie) {
-                $("#movies-section").append($("<h3>").text("No movie was found. Try searching again or adjusting your parameters to describe a movie that actually exists"))
+                $("#movies-section").append($("<h5>").text("No movie was found. Try searching again or adjusting your parameters to describe a movie that actually exists"))
             }
             else {
 
@@ -285,7 +297,7 @@ function movieSearch(movieId) {
         // console.log(movieId);
 
         // Movie name
-        
+
         if (response.title === undefined) {
             movie = "Title not found. Either there is no movie that fully matches your criteria or we tried to recommend you a movie that doesn't exist. Try searching again."
         }
