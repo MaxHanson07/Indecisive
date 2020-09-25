@@ -11,7 +11,7 @@ $(document).ready(function () {
         if ($(window).scrollTop() > 100) {
             $("nav").addClass("stickynav");
         } else {
-            $("nav").removeClass("sticky-nav");
+            $("nav").removeClass("stickynav");
         }
     })
 
@@ -241,6 +241,22 @@ function actorSearch(actor, requestedGenre) {
 
             movieId = response.results[chooseMovie].id;
 
+        else {
+            //Use actor ID to get all sorts of data
+            //Use actor ID to get all sorts of data
+            var actorIdQueryURL = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=" + apiKey + "&language=en-US&append_to_response=movie_credits"; $.ajax({
+                url: actorIdQueryURL,
+                method: "GET",
+            }).then(function (response) {
+
+                console.log(response);
+                // Returns a random movie by this actor
+                var randomIdx = Math.floor(Math.random() * response.movie_credits.cast.length);
+                var movieId = response.movie_credits.cast[randomIdx].id;
+                movieSearch(movieId);
+
+            });
+        }
             movieSearch(movieId);
 
         })
