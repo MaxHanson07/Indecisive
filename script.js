@@ -96,6 +96,10 @@ var trailer;
 
 var apiKey = "bff2fb9d233724d8717a04b7589bf81d"
 
+// Run function to pull search results from local storage and fill array with it
+let userSearch = JSON.parse(localStorage.getItem("movieResult")) || [];
+
+
 $("#searchButton").click(function () {
     var actor = $("#actorName").val();
     console.log(actor);
@@ -228,10 +232,6 @@ function actorSearch(actor, requestedGenre, yearId) {
 
             });
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
     });
 };
 
@@ -249,6 +249,8 @@ function movieSearch(movieId) {
         // Movie name
         movie = response.title;
         console.log(movie);
+        userSearch.push(movie);
+        localStorage.setItem("movieResults", JSON.stringify(userSearch))
 
         // Movie genre
         genres = response.genres;
