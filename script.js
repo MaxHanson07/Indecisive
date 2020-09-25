@@ -47,9 +47,7 @@ var requestedRatings = []
 $(".rating").on('click', function (event) {
     // console.log($(this).attr("data-rating"), $(this)[0].checked);
 
-    
-    if (requestedRatings.includes($(this).attr("data-rating")))
-    {
+    if (requestedRatings.includes($(this).attr("data-rating"))) {
         var indexRating = requestedRatings.indexOf($(this).attr("data-rating"));
 
         requestedRatings.splice(indexRating, 1);
@@ -60,22 +58,6 @@ $(".rating").on('click', function (event) {
         console.log(requestedRatings);
     }
     console.log(requestedRatings);
-    // if (checked === false) {
-    //     checked = true;
-    // }
-    // else if (checked) {
-    //     checked = false;
-    // }
-
-    // if (checked === false) {
-    //     $(this).val($(this).attr("data-rating"));
-    // }
-    // else {
-    //     $(this).val("");
-    // }
-    // console.log($(this).val())
-
-    
 
 })
 
@@ -125,7 +107,6 @@ $("#randomButton").click(function () {
     // Used for random button
     movieId = Math.floor(Math.random() * 1000) + 1;
     movieSearch(movieId);
-    // ratingFilter();
 })
 
 $("#searchButton").click(function () {
@@ -145,7 +126,7 @@ $("#searchButton").click(function () {
 
     if ((actor.trim() == "") && requestedGenre === null) {
         console.log("woo")
-        
+
         ratingFilter();
         yearSearch()
 
@@ -163,11 +144,12 @@ $("#searchButton").click(function () {
 
 })
 
+// Determines which ratings are checked and and converts them into a usable link addition for api calls
 function ratingFilter() {
     ratingsQuery = requestedRatings[0];
     if (requestedRatings.length > 1) {
-        for (let i=1; i<requestedRatings.length; i++) {
-            ratingsQuery = ratingQuery + "%2C%20" + requestedRatings[i]
+        for (let i = 1; i < requestedRatings.length; i++) {
+            ratingsQuery = ratingsQuery + "%2C%20" + requestedRatings[i]
         }
     }
 
@@ -175,116 +157,130 @@ function ratingFilter() {
 
 // Used only if user searches without entering parameters or choosing random search
 function yearSearch() {
-    var yearQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification=" + ratingsQuery;
+    if (requestedRatings.length < 1) {
+        $("#movies-section").append($("<h5>").text("Must allow for at least one rating"));
+    }
+    else {
+        var yearQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification_country=US&certification=" + ratingsQuery;
 
-    $.ajax({
-        url: yearQueryURL,
-        method: "GET",
-    }).then(function (response) {
-        console.log(response);
-
-        var chooseMovie = Math.floor(Math.random() * 19) + 1;
-
-        movieId = response.results[chooseMovie].id;
-
-        movieSearch(movieId);
-
-    })
-}
-
-// Returns most popular movies of certain genre
-function genreSearch(requestedGenre) {
-    var genreQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification=" + ratingsQuery;
-
-    $.ajax({
-        url: genreQueryURL,
-        method: "GET",
-    }).then(function (response) {
-        console.log(response);
-
-        var chooseMovie = Math.floor(Math.random() * 19) + 1;
-
-        movieId = response.results[chooseMovie].id;
-
-        movieSearch(movieId);
-
-    })
-}
-
-// Searches for movie with certain actor when user inputs an actor
-function actorSearch(actor, requestedGenre) {
-
-    //Find searched actor ID
-    var actorQueryURL =
-        "https://api.tmdb.org/3/search/person?api_key=" + apiKey + "&query=" + actor;
-
-    $.ajax({
-        url: actorQueryURL,
-        method: "GET",
-    }).then(function (response) {
-
-        console.log(response);
-
-        // Gets the actors name and their TMDb id
-        var actorId = response.results[0].id;
-        console.log(actorId);
-
-        var actorName = response.results[0].name;
-        console.log(actorName);
-
-        // Used to get id of movie
-        var actorIdQueryURL;
-
-        if (requestedGenre != null) {
-            actorIdQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre + "&with_cast=" + actorId + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification=" + ratingsQuery;
-
-        }
-        else {
-            actorIdQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_cast=" + actorId + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification=" + ratingsQuery;
-
-        }
-
+        console.log("YEAR-URL" + yearQueryURL)
         $.ajax({
-            url: actorIdQueryURL,
+            url: yearQueryURL,
             method: "GET",
         }).then(function (response) {
             console.log(response);
 
-            var chooseMovie = Math.floor(Math.random() * response.results.length);
+            var chooseMovie = Math.floor(Math.random() * 19) + 1;
+
+            if (!chooseMovie) {
+                $("#movies-section").append($("<h5>").text("No movie was found. Try searching again or adjusting your parameters to describe a movie that actually exists"))
+            }
+            else {
+                movieId = response.results[chooseMovie].id;
+                movieSearch(movieId);
+            }
+
+        })
+    }
+}
+
+// Returns most popular movies of certain genre
+function genreSearch(requestedGenre) {
+    if (requestedRatings.length < 1) {
+        $("#movies-section").append($("<h5>").text("Must allow for at least one rating"));
+    }
+    else {
+        var genreQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification_country=US&certification=" + ratingsQuery;
+        console.log("Genre URL" + genreQueryURL)
+
+        $.ajax({
+            url: genreQueryURL,
+            method: "GET",
+        }).then(function (response) {
+            console.log(response);
+
+            var chooseMovie = Math.floor(Math.random() * 19) + 1;
 
             if (!chooseMovie) {
                 $("#movies-section").append($("<h5>").text("No movie was found. Try searching again or adjusting your parameters to describe a movie that actually exists"))
             }
             else {
 
-                console.log(response.results, chooseMovie)
-
                 movieId = response.results[chooseMovie].id;
-
                 movieSearch(movieId);
             }
 
-
         })
+    }
+}
 
-        // var actorIdQueryURL = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=" + apiKey + "&language=en-US&append_to_response=movie_credits";
-        // $.ajax({
-        //     url: actorIdQueryURL,
-        //     method: "GET",
-        // }).then(function (response) {
+// Searches for movie with certain actor when user inputs an actor
+function actorSearch(actor, requestedGenre) {
+    if (requestedRatings.length < 1) {
+        $("#movies-section").append($("<h5>").text("Must allow for at least one rating"));
+    }
+    else {
 
-        //     console.log(response);
-        //     // Returns a random movie by this actor
-        //     // TODO: Needs exception handling
-        //     var randomIdx = Math.floor(Math.random() * response.movie_credits.cast.length);
-        //     var movieId = response.movie_credits.cast[randomIdx].id;
-        //     movieSearch(movieId);
+        //Find searched actor ID
+        var actorQueryURL =
+            "https://api.tmdb.org/3/search/person?api_key=" + apiKey + "&query=" + actor;
 
-        // });
+        $.ajax({
+            url: actorQueryURL,
+            method: "GET",
+        }).then(function (response) {
 
-    });
+            console.log(response);
+
+            // Gets the actors name and their TMDb id
+            var actorId = response.results[0].id;
+            console.log(actorId);
+
+            var actorName = response.results[0].name;
+            console.log(actorName);
+
+            // Used to get id of movie
+            var actorIdQueryURL;
+
+            if (requestedGenre != null) {
+                actorIdQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_genres=" + requestedGenre + "&with_cast=" + actorId + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification_country=US&certification=" + ratingsQuery;
+
+                console.log("ACTOR W/O GENRE" + actorIdQueryURL)
+            }
+            else {
+                actorIdQueryURL = "https://api.themoviedb.org/3/discover/movie?api_key=bff2fb9d233724d8717a04b7589bf81d&with_cast=" + actorId + "&primary_release_date.gte=" + `${minYear}-01-01` + "&primary_release_date.lte=" + `${maxYear}-12-31` + "&certification_country=US&certification=" + ratingsQuery;
+
+                console.log("ACTOR W/ GENRE" + actorIdQueryURL)
+            }
+
+            $.ajax({
+                url: actorIdQueryURL,
+                method: "GET",
+            }).then(function (response) {
+                console.log(response);
+
+                var chooseMovie = Math.floor(Math.random() * response.results.length);
+
+                if (!chooseMovie) {
+                    $("#movies-section").append($("<h5>").text("No movie was found. Try searching again or adjusting your parameters to describe a movie that actually exists"))
+                }
+                else {
+
+                    console.log(response.results, chooseMovie)
+
+                    movieId = response.results[chooseMovie].id;
+
+                    movieSearch(movieId);
+                }
+
+
+            })
+
+        });
+    }
 };
 
+// Searches for movies by the id returned from another function. Gets the values for all info displayed on webpage
 function movieSearch(movieId) {
 
     var movieIdQueryURL = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + apiKey + "&language=en-US&append_to_response=videos,release_dates";
@@ -372,17 +368,6 @@ function movieSearch(movieId) {
             console.log(trailer);
         }
 
-        // console.log("RESULTS", response.release_dates.results);
-        // // TODO: Need an error catch
-        // if (response.release_dates.results.length === 0 || response.release_dates.length === 0 || response === undefined) {
-        //     certification = "No rating found"
-        // }
-        // else {
-        //     // Movie certification
-        //     certification = response.release_dates.results[1].release_dates[0].certification || "";
-        //     console.log(certification);
-        // }
-
         renderMovie({ genres, name: movie, year, rating, overview, poster, trailer, })
 
     });
@@ -401,5 +386,4 @@ function renderMovie(movie) {
     $("#movies-section").append(`<iframe width="420" height="315"
 src="${movie.trailer}">
 </iframe>`)
-    // $("#movies-section").append($("<p>").text(movie.certification))
 }
