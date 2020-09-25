@@ -228,10 +228,6 @@ function actorSearch(actor, requestedGenre, yearId) {
 
             });
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
     });
 };
 
