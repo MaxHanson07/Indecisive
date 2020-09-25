@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ndecisive</title>
+
+    <!-- Compressed CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="../distribute/nouislider.css">
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Link to Icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-wrapper headerstyle">
+                <a href="#!" class="brand-logo">Ndecisive</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="./home(new).html">Home</a></li>
+                    <li><a href="../index.html">Movies</a></li>
+                    <li><a href="./books(new).html">Books</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="./home(new).html">Home</a></li>
+            <li><a href="../index.html">Movies</a></li>
+            <li><a href="./books(new).html">Books</a></li>
+        </ul>
+    </header>
+
+    <!-- Main event here -->
+    <div class="container bookstyle">
+        <h3 class="textcenter">Books Recommendation Generator</h3>
+
+        <!-- Form section -->
+        <div class="row">
+            <form class="col s9">
+
+                <div class="row">
+                    <div class="input-field col s12">
+                    <input placeholder="Name of Books" id="bookTitle" type="text" class="validate">
+                    <label for="titlebook">Title of Books</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id='genre'>
+                            <option value="0" disabled selected>Choose your option</option>
+                            <option id="1" value="">Fiction</option>
+                            <option id="2" value="">Novel</option>
+                            <option id="3" value="">Narrative</option>
+                            <option id="4" value="">Non-fiction</option>
+                            <option id="5" value="">Mystery</option>
+                            <option id="6" value="">Romance</option>
+                            <option id="7" value="">Historical Fiction</option>
+                            <option id="8" value="">Science Fiction</option>
+                            <option id="9" value="">Horror Fiction</option>
+                            <option id="10" value="">Thriller</option>
+                            <option id="11" value="">Biography</option>
+                            <option id="12" value="">Romance</option>
+                            <option id="13" value="">Fantasy</option>
+                            <option id="14" value="">Fairy Tale</option>
+                            <option id="15" value="">History</option>
+                          </select>
+                          <label>Genre</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id='genre'>
+                            <option value="0" disabled selected>Choose your option</option>
+                            <option id="1" value="">Year of 2020</option>
+                            <option id="2" value="">Year of 2019</option>
+                            <option id="3" value="">Year of 2018</option>
+                            <option id="4" value="">Year of 2017</option>
+                            <option id="5" value="">Year of 2016</option>
+                            <option id="6" value="">Year of 2015</option>
+                            <option id="7" value="">Year of 2014</option>
+                            <option id="8" value="">Year of 2013</option>
+                            <option id="9" value="">Year of 2012</option>
+                            <option id="10" value="">Year of 2011</option>
+                            <option id="11" value="">Year of 2010</option>
+                            <option id="12" value="">Year of 2009</option>
+                            <option id="13" value="">Year of 2008</option>
+                            <option id="14" value="">Year of 2007</option>
+                            <option id="15" value="">Year of 2006</option>
+                            <option id="15" value="">Year of 2005</option>
+                            <option id="15" value="">Year of 2004</option>
+                            <option id="15" value="">Year of 2003</option>
+                            <option id="15" value="">Year of 2002</option>
+                            <option id="15" value="">Year of 2001</option>
+                            <option id="15" value="">Year of 2000</option>
+                          </select>
+                        <label for="rating">Top Rated Book of the Year</label>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Search History column -->
+            <div class="searchhistory col s3">
+                <p class="historytitle textcenter">Search History</p>
+                <span id="historyresult" class="history"></span>
+            </div>
+        </div>
+
+        <!-- Buttons section -->
+        <div class="pressButtons centerbutton">
+            <div class="row">
+                <div class="col s3">
+                    <!-- Make the search button -->
+                    <button id="searchButton" class="buttons tooltipped" data-position="left" data-tooltip="Search Movies!"><i class="material-icons">search</i></button>
+                </div>
+                
+                <div class="col s3">
+                    <!-- Make the clear button -->
+                    <button id="clearButton" class="buttons tooltipped" data-position="right" data-tooltip="Clear form"><i class="material-icons">clear_all</i></button>
+                </div>
+                
+                <div class="col s3">
+                    
+                </div>
+
+                <div class="col s3">
+                    <!-- Make the random button -->
+                    <button id="clearButton" class="buttons tooltipped" data-position="top" data-tooltip="Generate Random Movies"><i class="material-icons">loop</i></button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Make the results section -->
+    <div class="results">
+        <div class="row">
+            <div class="col s12 m12">
+                    
+                <!-- Make space -->
+                <br>
+                <br>
+
+                <div class="card resultcard">
+                    <!-- Header of result -->
+                    <div class="card-content">
+                        <span class="card-title">Books Results</span>
+                    </div>
+
+                    <!-- Output result from user's criteria -->
+                    <div id="movies-section"></div>
+                </div>
+            </div>
+        </div>  
+    </div>
+    
+    <!-- Make space -->
+    <br>
+    <br>
+    <br>
+    
+    <!-- Footer section -->
+    <footer>
+        <p>Thanks for using us!</p>
+    </footer>
+
+    <!-- Link to jQuery file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- Compressed JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!-- Link to JS files -->
+    <script src="../distribute/wNumb.js"></script>
+    <script src="../distribute/nouislider.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
