@@ -43,7 +43,7 @@ noUiSlider.create(slider, {
 });
 var checked = false;
 
-var requestedRatings = []
+var requestedRatings = ["PG-13","G","PG","R","NC-17"]
 $(".rating").on('click', function (event) {
     // console.log($(this).attr("data-rating"), $(this)[0].checked);
 
@@ -57,7 +57,6 @@ $(".rating").on('click', function (event) {
         requestedRatings.push($(this).attr("data-rating"));
         console.log(requestedRatings);
     }
-    console.log(requestedRatings);
 
 })
 
@@ -75,7 +74,16 @@ slider.addEventListener('change', function (event) {
     maxYear = parseInt(getValue[1]);
 
 });
-// // Until here (Please don't delete the code above this line! :)
+
+// Add clear button to clear the entire form
+var clearButton  = $("#clearButton");
+clearButton.on("click", function(){
+    $(".rating").prop("checked", true);
+    $("#actorName").val("");
+    $("#genre").prop("selectedIndex", 0);
+    $("#genre").formSelect();
+    slider.noUiSlider.reset();
+})
 
 // $("#searchButton").click(function(){
 // Movie title
@@ -100,7 +108,12 @@ var apiKey = "bff2fb9d233724d8717a04b7589bf81d"
 var ratingQuery;
 
 // Run function to pull search results from local storage and fill array with it
-let userSearch = JSON.parse(localStorage.getItem("movieResult")) || [];
+let userSearch = JSON.parse(localStorage.getItem("movieResults")) || [];
+console.log(userSearch)
+
+for (let i = userSearch.length - 1; i > userSearch.length - 6; i--){
+    $(".searchHistory").append($("<li>").text(userSearch[i]))
+}
 
 // Are you feeling lucky?
 $("#randomButton").click(function () {
@@ -110,6 +123,7 @@ $("#randomButton").click(function () {
 })
 
 $("#searchButton").click(function () {
+    console.log(userSearch)
     var getValue = slider.noUiSlider.get();
 
     // Get value from year slider
@@ -149,7 +163,7 @@ function ratingFilter() {
     ratingsQuery = requestedRatings[0];
     if (requestedRatings.length > 1) {
         for (let i = 1; i < requestedRatings.length; i++) {
-            ratingsQuery = ratingsQuery + "%2C%20" + requestedRatings[i]
+            ratingsQuery = ratingsQuery + "%7C" + requestedRatings[i]
         }
     }
 
@@ -301,6 +315,10 @@ function movieSearch(movieId) {
             movie = response.title;
             console.log(movie);
             userSearch.push(movie);
+            $(".searchHistory").empty()
+            for (let i = userSearch.length - 1; i > userSearch.length - 6; i--){
+                $(".searchHistory").append($("<li>").text(userSearch[i]))
+            }
             localStorage.setItem("movieResults", JSON.stringify(userSearch))
         }
 
