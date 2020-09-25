@@ -10,198 +10,128 @@
 
     <!-- Link to CSS -->
     <link rel="stylesheet" href="./distribute/nouislider.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 
     <!-- Link to Icon -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
-<body>
+<body class="content">
     <!-- Header -->
     <header>
-        <nav>
+        <nav class="navcolor">
             <div class="nav-wrapper headerstyle">
                 <a href="#!" class="brand-logo">Ndecisive</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="./features/home(new).html">Home</a></li>
-                    <li><a href="./index.html">Movies</a></li>
-                    <li><a href="./features/books(new).html">Books</a></li>
-                    <li><a href="#">Other</a></li>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./movie.html">Movies</a></li>
                 </ul>
             </div>
         </nav>
 
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="./features/home(new).html">Home</a></li>
-            <li><a href="./index.html">Movies</a></li>
-            <li><a href="./features/">Books</a></li>
-            <li><a href="#">Other</a></li>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./movie.html">Movies</a></li>
         </ul>
     </header>
 
+    <!-- Opening -->
+    <div class="carousel carousel-slider center">
+        <div class="carousel-item red white-text homepic">
+          <h1 class="textcenter titletext">~Welcome to Ndecisive~</h1>
+        </div>
+        <div class="carousel-item white white-text moviepic">
+          <h1 class="sidetitle">Movies</h1>
+          <p style="font-size: 25px" class="white-text sidetext">Places to find movies with your preference!</p>
+        </div>
+    </div>
+
     <!-- Main event here -->
-    <div class="container moviestyle">
-        <h3 class="textcenter">Movie Recommendation Generator</h3>
+    <div class="container">
+        
+        <br>
+
+        <h4 class="textcenter">Why using our features?</h4>
 
         <!-- Make space -->
         <br>
         <br>
-
-        <!-- Form section -->
-        <div class="row">
-            <form class="col s9">
-
-                <div class="row">
-                    <div class="input-field col s12">
-                    <input placeholder="Name of Actor" id="actorName" type="text" class="validate">
-                    <label for="actorname">Name of Actor</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <select id='genre'>
-                          <option value="0" disabled selected>Choose your option</option>
-                          <option id="1" value="28">Action</option>
-                          <option id="2" value="18">Drama</option>
-                          <option id="3" value="27">Horror</option>
-                          <option id="4" value="12">Adventure</option>
-                          <option id="5" value="14">Fantasy</option>
-                          <option id="6" value="10749">Romance</option>
-                          <option id="7" value="53">Thriller</option>
-                          <option id="8" value="16">Animation</option>
-                          <option id="9" value="9648">Mystery</option>
-                          <option id="10" value="99">Documentary</option>
-                          <option id="11" value="80">Crime</option>
-                          <option id="12" value="35">Comedy</option>
-                          <option id="13" value="878">Science Fiction</option>
-                          <option id="14" value="10751">Family</option>
-                          <option id="15" value="10752">War</option>
-                          <option id="16" value="37">Western</option>
-                          <option id="17" value="10770">TV Movie</option>
-                          <option id="18" value="10402">Music</option>
-                          <option id="19" value="36">History</option>
-                        </select>
-                        <label>Genre</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <label for="rating">Rating</label>
-                        <!-- Make space between -->
-                        <br>
-                        <br>
-                        
-                        <p class="spacing">
-                            <label class="col s2">
-                                <input type="checkbox" id="pg13Box" class="rating"/>
-                                <span id="pg13">PG-13</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox" id="gBox" class="rating"/>
-                                <span id="g">G</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox" id="pgBox" class="rating"/>
-                                <span id="pg">PG</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox" id="rBox" value="r" data-rating="r" class="rating"/>
-                                <span id="r">R</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox"  id="nc17Box" value="nc17" class="rating"/>
-                                <span id="nc17">NC-17</span>
-                            </label>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <label for="yearrange">Year Range</label>
-
-                        <!-- Make space between -->
-                        <br>
-                        <br>
-                        <br>
-
-                        <!-- Inserting the year slider -->
-                        <div id="test-slider"></div>
-
-                        <!-- Make space between -->
-                        <br>
-                        
-                        <!-- Getting the slider value -->
-                        <!-- <button id="slidervalue">Value</button> -->
-                    </div>
+        
+        <!-- Make promotional section -->
+        <div class="row promotional">
+            <!-- Promo Content 1 goes here -->
+            <div class="col s4 textcenter">
+                <div class="center promo promo-example">
+                    <i class="material-icons large">flash_on</i>
+                    <p class="promo-caption">Speeds Up Searching</p>
+                    <p class="light center">
+                        With our features you can find any movies with any genres and ratings from any years with a single click of your mouse! It's easy right? I know! Your Welcome!
+                    </p>
                 </div>
             </form>
 
             <!-- Search History column -->
-            <div class="searchhistory col s3">
-                <p class="historytitle textcenter">Search History</p>
+            <div class="col s3">
+                <h6 class="historytitle textcenter">Search History</h6>
+                <ol class="searchHistory">
+
+                </ol>
                 <span id="historyresult" class="history"></span>
             </div>
-        </div>
 
-        <!-- Buttons section -->
-        <div class="pressButtons centerbutton">
+            <!-- Promo Content 2 goes here -->
+            <div class="col s4 textcenter">
+                <div class="center promo promo-example">
+                    <i class="material-icons large">group</i>
+                    <p class="promo-caption">User Experience Focused</p>
+                    <p class="light center">
+                        With Ndecisive, your search compiled with all the sources that you need about the movies! So, you don't have to trouble yourself to find the missing information on other platforms
+                    </p>
+                </div>
+            </div>
+
+            <!-- Promo Content 3 goes here -->
+            <div class="col s4 textcenter">
+                <div class="center promo promo-example">
+                    <i class="material-icons large">settings</i>
+                    <p class="promo-caption">Easy to work with</p>
+                    <p class="light center">
+                        No ideas? No problem! We got you covered! Our features come with all the tools that you need to enhance your movies search and they all are easy to use!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <hr> -->
+
+    <!-- Make the buttons to link the generator -->
+    <div class="generatorbuttons">
+        <!-- Make space -->
+        <br>
+        <br>
+
+        <h5 class="textcenter styling">Still considering what movies you want to choose?<br> Check out our generator that could provide recommendations only for you!</h5>
+        <div class="centerbutton">
             <div class="row">
-                <div class="col s3">
-                    <!-- Make the search button -->
-                    <button id="searchButton" class="buttons tooltipped" data-position="top" data-tooltip="Search Movies!"><i class="material-icons">search</i></button>
-                </div>
-                
-                <div class="col s3">
-                    <!-- Make the clear button -->
-                    <button id="clearButton" class="buttons tooltipped" data-position="top" data-tooltip="Clear form"><i class="material-icons">clear_all</i></button>
-                </div>
-
-                <div class="col s3">
-                    
-                </div>
-
-                <div class="col s3">
-                    <!-- Make the random button -->
-                    <button id="clearButton" class="buttons tooltipped" data-position="top" data-tooltip="Generate Random Movies"><i class="material-icons">loop</i></button>
+                <div class="col s12">
+                    <a id="generatormoviebutton" class="buttons tooltipped dark" data-position="left" data-tooltip="Go to Movies!" href="./movie.html"><i class="material-icons medium">movie</i></a>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Make the results section -->
-    <div class="results">
-        <div class="row">
-            <div class="col s12 m12">
-                    
-                <!-- Make space -->
-                <br>
-                <br>
-
-                <div class="card resultcard">
-                    <!-- Header of result -->
-                    <div class="card-content">
-                        <span class="card-title">Movies Results</span>
-                    </div>
-
-                    <!-- Output result from user's criteria -->
-                    <div id="movies-section"></div>
-                </div>
-            </div>
-        </div>  
-    </div>
-
-    <!-- Make space between -->
+    
+    <!-- Make space -->
     <br>
     <br>
     <br>
-
+    
     <!-- Footer section -->
     <footer>
-        <p>Thanks for using us!</p>
+        <div class="footer-copyright">
+            <p>© 2020 Team 9 Copyright Text</p>
+        </div>
     </footer>
 
     <!-- Link to jQuery file -->
@@ -213,6 +143,6 @@
     <!-- Link to JS files -->
     <script src="./distribute/wNumb.js"></script>
     <script src="./distribute/nouislider.js"></script>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>

@@ -61,7 +61,6 @@ $(".rating").on('click', function (event) {
         $(this).val("");
     }
 
-
 })
 
 var minYear;
@@ -78,7 +77,16 @@ slider.addEventListener('change', function (event) {
     maxYear = parseInt(getValue[1]);
 
 });
-// // Until here (Please don't delete the code above this line! :)
+
+// Add clear button to clear the entire form
+var clearButton  = $("#clearButton");
+clearButton.on("click", function(){
+    $(".rating").prop("checked", true);
+    $("#actorName").val("");
+    $("#genre").prop("selectedIndex", 0);
+    $("#genre").formSelect();
+    slider.noUiSlider.reset();
+})
 
 // $("#searchButton").click(function(){
 // Movie title
@@ -101,10 +109,16 @@ var trailer;
 var apiKey = "bff2fb9d233724d8717a04b7589bf81d"
 
 // Run function to pull search results from local storage and fill array with it
-let userSearch = JSON.parse(localStorage.getItem("movieResult")) || [];
+let userSearch = JSON.parse(localStorage.getItem("movieResults")) || [];
+console.log(userSearch)
+
+for (let i = userSearch.length - 1; i > userSearch.length - 6; i--){
+    $(".searchHistory").append($("<li>").text(userSearch[i]))
+}
 
 
 $("#searchButton").click(function () {
+    console.log(userSearch)
     var getValue = slider.noUiSlider.get();
 
     // Get value from year slider
@@ -245,22 +259,7 @@ function actorSearch(actor, requestedGenre) {
 
             movieId = response.results[chooseMovie].id;
 
-        else {
-            //Use actor ID to get all sorts of data
-            //Use actor ID to get all sorts of data
-            var actorIdQueryURL = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=" + apiKey + "&language=en-US&append_to_response=movie_credits"; $.ajax({
-                url: actorIdQueryURL,
-                method: "GET",
-            }).then(function (response) {
-
-                console.log(response);
-                // Returns a random movie by this actor
-                var randomIdx = Math.floor(Math.random() * response.movie_credits.cast.length);
-                var movieId = response.movie_credits.cast[randomIdx].id;
-                movieSearch(movieId);
-
-            });
-        }
+    
             movieSearch(movieId);
 
         })
@@ -313,6 +312,10 @@ function movieSearch(movieId) {
             movie = response.title;
             console.log(movie);
             userSearch.push(movie);
+            $(".searchHistory").empty()
+            for (let i = userSearch.length - 1; i > userSearch.length - 6; i--){
+                $(".searchHistory").append($("<li>").text(userSearch[i]))
+            }
             localStorage.setItem("movieResults", JSON.stringify(userSearch))
         }
 
