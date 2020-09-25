@@ -61,7 +61,6 @@ $(".rating").on('click', function (event) {
         $(this).val("");
     }
 
-
 })
 
 var minYear;
@@ -78,7 +77,16 @@ slider.addEventListener('change', function (event) {
     maxYear = parseInt(getValue[1]);
 
 });
-// // Until here (Please don't delete the code above this line! :)
+
+// Add clear button to clear the entire form
+var clearButton  = $("#clearButton");
+clearButton.on("click", function(){
+    $(".rating").prop("checked", true);
+    $("#actorName").val("");
+    $("#genre").prop("selectedIndex", 0);
+    $("#genre").formSelect();
+    slider.noUiSlider.reset();
+})
 
 // $("#searchButton").click(function(){
 // Movie title
@@ -241,22 +249,6 @@ function actorSearch(actor, requestedGenre) {
 
             movieId = response.results[chooseMovie].id;
 
-        else {
-            //Use actor ID to get all sorts of data
-            //Use actor ID to get all sorts of data
-            var actorIdQueryURL = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=" + apiKey + "&language=en-US&append_to_response=movie_credits"; $.ajax({
-                url: actorIdQueryURL,
-                method: "GET",
-            }).then(function (response) {
-
-                console.log(response);
-                // Returns a random movie by this actor
-                var randomIdx = Math.floor(Math.random() * response.movie_credits.cast.length);
-                var movieId = response.movie_credits.cast[randomIdx].id;
-                movieSearch(movieId);
-
-            });
-        }
             movieSearch(movieId);
 
         })

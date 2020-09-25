@@ -1,15 +1,30 @@
+.contentf{
+    background-color: rgb(226, 226, 226);
+}
+
 .headerstyle{
+    padding-left: 1%;
     padding-right: 3%;
     height: 10%;
 }
 
 .stickynav{
     position: fixed;
-    top: 1;
+    top: 0;
+    overflow: visible;
+    z-index: 50;
 }
 
 .textcenter{
     text-align: center;
+}
+
+.styling{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+}
+
+.navcolor{
+    background-color: #3FB8AF;
 }
 
 .demo-toggle-title {
@@ -25,12 +40,16 @@
     padding-top: 10%;
 }
 
+.sidetext{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
 .moviestyle, .bookstyle{
     border: 1px solid black;
     padding: 50px 50px 50px 50px;
     box-shadow: 3px 3px;
     margin-top: 3%;
-    width: 50%;
+    width: 75%;
 }
 
 .homestyle{
@@ -40,6 +59,7 @@
 .centerbutton{
     display: flex;
     justify-content: center;
+    margin-top: 3%;
 }
 
 .carousel{
@@ -47,17 +67,23 @@
     width: 100%;
 }
 
+.homepic{
+    background-image: url("./240_F_271120192_ZDT2FCxH94akiIsOHwVULWnbNzi8Oagn.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
 .moviepic{
     background-image: url("./AumI4r.jpg");
     background-size: cover;
     background-position: center;
 }
-
+/* 
 .bookpic{
     background-image: url("./nZNGDy.jpg");
     background-size: cover;
     background-position: center;
-}
+} */
 
 .resultcard{
     width: 85%;
@@ -67,7 +93,8 @@
 
 footer{
     text-align: center;
-    border-top: 1px solid black;
+    background-color: #3FB8AF;
+    padding-bottom: 15px;
 }
 
 .noUi-tooltip {
