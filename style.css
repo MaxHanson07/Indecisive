@@ -16,10 +16,21 @@
     margin-top: 0.5rem;
 }
 
+.titletext{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-top: 10%;
+}
+
+.sidetitle{
+    padding-top: 10%;
+}
+
 .moviestyle, .bookstyle{
     border: 1px solid black;
     padding: 50px 50px 50px 50px;
     box-shadow: 3px 3px;
+    margin-top: 3%;
+    width: 50%;
 }
 
 .homestyle{
@@ -31,6 +42,23 @@
     justify-content: center;
 }
 
+.carousel{
+    height: 600px;
+    width: 100%;
+}
+
+.moviepic{
+    background-image: url("./AumI4r.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.bookpic{
+    background-image: url("./nZNGDy.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
 .resultcard{
     width: 85%;
     display: block;
@@ -39,7 +67,7 @@
 
 footer{
     text-align: center;
-    border: 1px solid black;
+    border-top: 1px solid black;
 }
 
 .noUi-tooltip {

@@ -11,7 +11,7 @@ $(document).ready(function () {
         if($(window).scrollTop() > 100){
             $("nav").addClass("stickynav");
         } else {
-            $("nav").removeClass("sticky-nav");
+            $("nav").removeClass("stickynav");
         }
     })
 
@@ -228,10 +228,6 @@ function actorSearch(actor, requestedGenre, yearId) {
 
             });
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
     });
 };
 
@@ -325,5 +321,5 @@ function renderMovie(movie) {
     $("#movies-section").append(`<iframe width="420" height="315"
 src="${movie.trailer}">
 </iframe>`)
-    $("#movies-section").append($("<p>").text(movie.certification))
+    // $("#movies-section").append($("<p>").text(movie.certification))
 }
