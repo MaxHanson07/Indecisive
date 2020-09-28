@@ -277,14 +277,17 @@ function actorSearch(actor, requestedGenre) {
 
                 console.log("Choose movie" + chooseMovie)
 
-                if (!chooseMovie) {
-                    $("#movies-section").text($("<h5>").text("No movie was found. Try searching again or adjusting your parameters to describe a movie that actually exists"))
+                // Error: Sometimes doesn't find a movie even though one exists
+                if (chooseMovie === undefined || response.results.length === 0) {
+                    $("#movies-section").append($("<h5>").text("No movie was found. Try searching again or adjusting your parameters to describe a movie that actually exists"))
                 }
                 else {
 
                     console.log(response.results, chooseMovie)
 
                     movieId = response.results[chooseMovie].id;
+
+                    console.log(movieId)
 
                     movieSearch(movieId);
                 }
