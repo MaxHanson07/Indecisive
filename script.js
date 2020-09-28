@@ -400,7 +400,7 @@ function movieSearch(movieId) {
 function renderMovie(movie) {
     console.log("MOVIE", movie)
     $("#movies-section").empty()
-    $("#movies-section").append($("<h3>").text("Title: " + movie.name))
+    $("#movies-section").append($("<h3>").text(movie.name))
     $("#movies-section").append($("<img>").attr("src", movie.poster))
     $("#movies-section").append($("<p>").text("Year: " + movie.year))
     $("#movies-section").append($("<p>").text("Plot: " + movie.overview))
