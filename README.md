@@ -19,3 +19,7 @@ THEN I am given a viable movie to watch.
 
 Languages used: [HTML, CSS, JavaScript, jQuery, Materialize]
 API's used: [api.themoviedb.org/3/discover, api.tmdb.org/3/search/person, api.themoviedb.org/3/movie/, api.tmdb.org/3/search/person]
+
+# Screenshot
+
+![App screenshot](screenshot.png)
