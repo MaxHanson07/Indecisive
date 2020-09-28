@@ -20,7 +20,7 @@
     <!-- Header -->
     <header>
         <nav class="navcolor">
-            <div class="nav-wrapper headerstyle">
+            <div class="container nav-wrapper headerstyle">
                 <a href="./index.html" class="brand-logo">Ndecisive</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
@@ -37,173 +37,158 @@
     </header>
 
     <!-- Main event here -->
-    <div class="container moviestyle">
-        <h3 class="textcenter mobiletext">Movie Recommendation Generator</h3>
-
-        <!-- Make space -->
-        <br>
-        <br>
-
-        <!-- Form section -->
+    <div class="container">
         <div class="row">
-            <form class="col s9">
-
+            <div class="col l4 moviestyle">
                 <div class="row">
-                    <div class="input-field col s12">
-                    <input placeholder="Name of Actor" id="actorName" type="text" class="validate">
-                    <label for="actorname">Name of Actor</label>
+                    <div class="col">
+                        <h5 class="mobiletext">Movie Generator</h5>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <select id="genre">
-                          <option value="0" disabled selected="selected">Choose your option</option>
-                          <option id="1" value="28">Action</option>
-                          <option id="2" value="18">Drama</option>
-                          <option id="3" value="27">Horror</option>
-                          <option id="4" value="12">Adventure</option>
-                          <option id="5" value="14">Fantasy</option>
-                          <option id="6" value="10749">Romance</option>
-                          <option id="7" value="53">Thriller</option>
-                          <option id="8" value="16">Animation</option>
-                          <option id="9" value="9648">Mystery</option>
-                          <option id="10" value="99">Documentary</option>
-                          <option id="11" value="80">Crime</option>
-                          <option id="12" value="35">Comedy</option>
-                          <option id="13" value="878">Science Fiction</option>
-                          <option id="14" value="10751">Family</option>
-                          <option id="15" value="10752">War</option>
-                          <option id="16" value="37">Western</option>
-                          <option id="17" value="10770">TV Movie</option>
-                          <option id="18" value="10402">Music</option>
-                          <option id="19" value="36">History</option>
-                        </select>
-                        <label>Genre</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <label for="rating">Rating</label>
-                        <!-- Make space between -->
-                        <br>
-                        <br>
+                <!-- Form section -->
+                    <form>
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <input placeholder="Name of Actor" id="actorName" type="text" class="validate">
+                            <label for="actorname">Name of Actor</label>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="genre">
+                                <option value="0" disabled selected="selected">Choose your option</option>
+                                <option id="1" value="28">Action</option>
+                                <option id="2" value="18">Drama</option>
+                                <option id="3" value="27">Horror</option>
+                                <option id="4" value="12">Adventure</option>
+                                <option id="5" value="14">Fantasy</option>
+                                <option id="6" value="10749">Romance</option>
+                                <option id="7" value="53">Thriller</option>
+                                <option id="8" value="16">Animation</option>
+                                <option id="9" value="9648">Mystery</option>
+                                <option id="10" value="99">Documentary</option>
+                                <option id="11" value="80">Crime</option>
+                                <option id="12" value="35">Comedy</option>
+                                <option id="13" value="878">Science Fiction</option>
+                                <option id="14" value="10751">Family</option>
+                                <option id="15" value="10752">War</option>
+                                <option id="16" value="37">Western</option>
+                                <option id="17" value="10770">TV Movie</option>
+                                <option id="18" value="10402">Music</option>
+                                <option id="19" value="36">History</option>
+                                </select>
+                                <label>Genre</label>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <div>
+                                    <label for="rating">Rating</label>
+                                </div>
+                                <div class="col">
+                                    <label>
+                                        <input type="checkbox" id="pg13Box" data-rating="PG-13" class="rating" checked="checked"/>
+                                        <span id="pg13">PG-13</span>
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <label>
+                                        <input type="checkbox" id="gBox" class="rating" data-rating="G" checked="checked"/>
+                                        <span id="g">G</span>
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <label>
+                                        <input type="checkbox" id="pgBox" class="rating" data-rating="PG" checked="checked"/>
+                                        <span id="pg">PG</span>
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <label>
+                                        <input type="checkbox" id="rBox" value="r" data-rating="R" class="rating" checked="checked"/>
+                                        <span id="r">R</span>
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <label>
+                                        <input type="checkbox"  id="nc17Box" value="nc17" class="rating" data-rating="NC-17" checked="checked"/>
+                                        <span id="nc17">NC-17</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <div>
+                                    <label for="yearrange">Year Range</label>
+                                </div>
+                                <!-- Inserting the year slider -->
+                                <div id="test-slider"></div>
+                            </div>
+                        </div>
+                    </form>
+    
+                <!-- Buttons section -->
+                <div class="pressButtons centerbutton">
+                    <div class="row">
+                        <div class="col s3">
+                            <!-- Make the search button -->
+                            <button id="searchButton" class="buttons tooltipped" data-position="top" data-tooltip="Search Movies!"><i class="material-icons">search</i></button>
+                        </div>
                         
-                        <p class="spacing">
-                            <label class="col s2">
-                                <input type="checkbox" id="pg13Box" data-rating="PG-13" class="rating" checked="checked"/>
-                                <span id="pg13">PG-13</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox" id="gBox" class="rating" data-rating="G" checked="checked"/>
-                                <span id="g">G</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox" id="pgBox" class="rating" data-rating="PG" checked="checked"/>
-                                <span id="pg">PG</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox" id="rBox" value="r" data-rating="R" class="rating" checked="checked"/>
-                                <span id="r">R</span>
-                            </label>
-                            <label class="col s2">
-                                <input type="checkbox"  id="nc17Box" value="nc17" class="rating" data-rating="NC-17" checked="checked"/>
-                                <span id="nc17">NC-17</span>
-                            </label>
-                        </p>
+                        <div class="col s3">
+                            <!-- Make the clear button -->
+                            <button id="clearButton" class="buttons tooltipped" data-position="top" data-tooltip="Clear form"><i class="material-icons">clear_all</i></button>
+                        </div>
+    
+                        <div class="col s3">
+                            
+                        </div>
+    
+                        <div class="col s3">
+                            <!-- Make the random button -->
+                            <button id="randomButton" class="buttons tooltipped" data-position="top" data-tooltip="Generate Random Movies"><i class="material-icons">loop</i></button>
+                        </div>
                     </div>
                 </div>
-
+    
+                <p> *If you're feeling lucky, use our random button generator</p>
+                <!-- Search History column -->
                 <div class="row">
-                    <div class="input-field col s12">
-                        <label for="yearrange">Year Range</label>
-
-                        <!-- Make space between -->
-                        <br>
-                        <br>
-                        <br>
-
-                        <!-- Inserting the year slider -->
-                        <div id="test-slider"></div>
-
-                        <!-- Make space between -->
-                        <br>
+                    <div class="col s12 m12">
+                        <h6 class="historytitle">Search History</h6>
+                        <ol class="searchHistory">
+    
+                        </ol>
                     </div>
                 </div>
-            </form>
-
-            <!-- Search History column -->
-            <div class="col s3">
-                <h6 class="historytitle textcenter">Search History</h6>
-                <ol class="searchHistory">
-
-                </ol>
-                <span id="historyresult" class="history"></span>
             </div>
-        </div>
-
-        <!-- Buttons section -->
-        <div class="pressButtons centerbutton">
-            <div class="row">
-                <div class="col s3">
-                    <!-- Make the search button -->
-                    <button id="searchButton" class="buttons tooltipped" data-position="top" data-tooltip="Search Movies!"><i class="material-icons">search</i></button>
-                </div>
-                
-                <div class="col s3">
-                    <!-- Make the clear button -->
-                    <button id="clearButton" class="buttons tooltipped" data-position="top" data-tooltip="Clear form"><i class="material-icons">clear_all</i></button>
-                </div>
-
-                <div class="col s3">
-                    
-                </div>
-
-                <div class="col s3">
-                    <!-- Make the random button -->
-                    <button id="randomButton" class="buttons tooltipped" data-position="top" data-tooltip="Generate Random Movies"><i class="material-icons">loop</i></button>
-                </div>
-            </div>
-        </div>
-
-        <br>
-
-        <p> ** Please put your movies criterias by selecting our filters! Or if you feeling lucky, we have our random <br> button that can provide a random movie for you! Enjoy!</p>
-    </div>
-
-    <!-- Make the results section -->
-    <div class="results">
-        <div class="row">
-            <div class="col s12 m12">
-                    
-                <!-- Make space -->
-                <br>
-                <br>
-
-                <div class="card resultcard">
-                    <!-- Header of result -->
-                    <div class="card-content">
-                        <span class="card-title">Movies Results</span>
+            <!-- Make the results section -->
+            <div class="col l8 results">
+                <div class="row">
+                    <div class="col s12 m12">
+                        <div class="resultcard">
+                            <!-- Output result from user's criteria -->
+                            <div id="movies-section"></div>
+                        </div>
                     </div>
-
-                    <!-- Output result from user's criteria -->
-                    <div id="movies-section"></div>
-                </div>
+                </div>  
             </div>
-        </div>  
+        </div>
     </div>
-
-    <!-- Make space between -->
-    <br>
-    <br>
-    <br>
 
     <!-- Footer section -->
     <footer>
-        <div class="footer-copyright">
-            <p>© 2020 Team 9 Copyright Text</p>
-          </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <p>© 2020 Team 9 Copyright</p>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- Link to jQuery file -->
