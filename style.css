@@ -78,12 +78,6 @@
     background-size: cover;
     background-position: center;
 }
-/* 
-.bookpic{
-    background-image: url("./nZNGDy.jpg");
-    background-size: cover;
-    background-position: center;
-} */
 
 .resultcard{
     width: 85%;
@@ -114,4 +108,9 @@ img {
 
 li {
     text-align: justify;
+}
+@media screen and (max-width: 400px){
+    .mobiletext{
+        font-size: 20px;
+    }
 }
