@@ -41,11 +41,11 @@ ol{
 
 .titletext{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding-top: 10%;
+    padding-top: 120px;
 }
 
 .sidetitle{
-    padding-top: 10%;
+    padding-top: 100px;
 }
 
 .sidetext{
@@ -54,9 +54,9 @@ ol{
 
 .moviestyle, .bookstyle{
     border: 1px solid black;
-    padding: 50px 50px 50px 50px;
+    padding:10px 20px !important;
     box-shadow: 3px 3px;
-    margin-top: 3%;
+    margin-top: 30px;
 }
 .results{
     padding-left:20px !important;
@@ -126,5 +126,8 @@ li {
     }
     .mobiletext{
         font-size: 20px;
+    }
+    .results{
+        padding-left:0px !important;
     }
 }
