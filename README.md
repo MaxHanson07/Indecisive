@@ -1,19 +1,28 @@
 # Indecisive
 
-With everything going on in the world right now, our brains are being pushed to the limit with the amount of information and decisions we need to make everyday. It seems that one of our only respites has also become another decision-making requirement: What movie to watch to relax and zone out to.  This seemingly simple action can take up to 30-45min and cause unwanted frustration.  Let us take that burden off you with nDecisive!
-Select from our simple filters (or don't) and let us find the movie for you!  Wanna watch a Burt Reynolds film? Boom, done!  In the mood for a good drama, but don't know what to pick?  Boom, done!  Any type of film you are in the mood for, nDecisive will find an option for you.  If you don't like the option, search again; there is no limit.
+Project Description:
+
+Are you feeling indecisive about what movie to watch? Perhaps you're in the mood for a specific genre like comedy or want to enjoy a film starring Brad Pitt, but you're not sure which one to pick. Enter nDecisive, your ultimate movie decision-making companion.
+
+How It Works:
+
+nDecisive simplifies the movie selection process. You have the flexibility to set as many or as few criteria as you'd like, and we'll provide you with a tailored movie recommendation. Here's how it works:
+
+Custom Criteria: You can specify your preferences by entering details such as the actor's name, preferred genre, and desired movie rating.
+
+Random Choice: If you're feeling adventurous or prefer to leave it to chance, you can choose to receive a completely random movie suggestion with no specific criteria.
+
+Discover and Enjoy: Once you've made your selection, we'll present you with the chosen movie's rating and even provide a trailer link so you can get a sneak peek.
+
+With nDecisive, movie night just got a whole lot easier and more enjoyable. Say goodbye to decision fatigue and hello to cinematic bliss.
+
+Ready to embark on your movie adventure? Try nDecisive today and let the movie magic begin!
 
 # Links
 
 * [Website](https://maxhanson07.github.io/Indecisive/)
 * [Github Repo](https://github.com/MaxHanson07/Indecisive)
 
-# User Story
-
-AS a user I want an app to help me decide what movie to watch.
-GIVEN the functionality of the nDecisive app,
-WHEN I follow the simple procedures of the app,
-THEN I am given a viable movie to watch.
 
 # Languages Used
 
